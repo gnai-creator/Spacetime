@@ -126,7 +126,7 @@ void Renderer::drawSphere(const glm::vec3& position, float radius, const glm::ma
 
     glm::mat4 model = glm::translate(glm::mat4(1.0f), position);
     model = glm::scale(model, glm::vec3(radius));
-    
+
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
@@ -138,9 +138,6 @@ void Renderer::drawSphere(const glm::vec3& position, float radius, const glm::ma
     glDeleteBuffers(1, &vbo);
     glDeleteVertexArrays(1, &vao);
 }
-
-
-
 
 void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -187,7 +184,6 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
-
 
     if (!ship.getTailPositions().empty()) {
         std::vector<float> tailVertices;
@@ -238,6 +234,9 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
         glDeleteBuffers(1, &particleVBO);
         glDeleteVertexArrays(1, &particleVAO);
     }
+
+    // Esfera de debug para posição envolvida
+    drawSphere(ship.getWrappedDebugPos(), 0.15f, view, projection);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);

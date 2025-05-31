@@ -1,11 +1,14 @@
-#ifndef HUD_HPP
-#define HUD_HPP
+// hud.hpp
+#pragma once
 
-#include "spaceship.hpp"
 #include <glm/glm.hpp>
+#include <string>
 
-namespace HUD {
-    void render(const Spaceship& ship);
-}
-
-#endif
+class HUD {
+public:
+    void showDebugInfo(const glm::vec3& posBeforeWrap,
+                       const glm::vec3& posAfterWrap,
+                       const glm::vec3& velocity,
+                       const glm::vec2& toroidalAngles,
+                       float R, float r);
+};

@@ -4,8 +4,8 @@
 
 class ToroidalWorld {
 public:
-    float R = 10.0f;
-    float r = 10.0f;
+    float R = 1e5f;
+    float r = 1e5f;
     float global_time = 0.0f;
 
     void update();

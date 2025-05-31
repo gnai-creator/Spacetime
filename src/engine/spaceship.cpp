@@ -2,11 +2,12 @@
 #include "spaceship.hpp"
 #include <glm/gtc/constants.hpp>
 #include <algorithm>
+#include <cmath>  // necessário para std::isfinite
 
 Spaceship::Spaceship()
-    : position(50.0f, 50.0f, 50.0f), velocity(0.0f), acceleration(25.0f),
+    : position(50.0f, 50.0f, 50.0f), velocity(1.0f), acceleration(1.78f),
       forward(0.0f, 0.0f, -1.0f), up(0.0f, 1.0f, 0.0f), yaw(-90.0f), pitch(0.0f),
-      modelMatrix(1.0f) {}
+      modelMatrix(1.0f), thrust(1.78f) {}
 
 void Spaceship::applyRotationFromMouse(float xoffset, float yoffset) {
     float sensitivity = 0.1f;
@@ -24,7 +25,7 @@ void Spaceship::applyRotationFromMouse(float xoffset, float yoffset) {
 }
 
 void Spaceship::processInput(GLFWwindow* window, float deltaTime) {
-    float thrust = 4.0 * acceleration / glm::pi<float>();
+    thrust += 4.0f * acceleration / glm::pi<float>();
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         velocity += forward * thrust * deltaTime;
@@ -38,41 +39,76 @@ void Spaceship::processInput(GLFWwindow* window, float deltaTime) {
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         velocity += glm::normalize(glm::cross(forward, glm::vec3(0,1,0))) * thrust * deltaTime;
 
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
         shoot();
+    
+
+
 }
-
 void Spaceship::update(const ToroidalWorld& world, float deltaTime) {
+    // Atualiza posição com a velocidade e aplica atrito
+    originalPosition = position;  // salvar antes do wrap
+
     position += velocity * deltaTime;
-    velocity *= 0.98f;  // Aplicar atrito
-    position = world.wrapToroidalPosition(position);  // mundo toroidal
+    velocity *= 0.99f;
+    constexpr float velocityLimit = 1e5f;
 
-    updateBullets(deltaTime);
+    if (!std::isfinite(velocity.x) || 
+    !std::isfinite(velocity.y) || 
+    !std::isfinite(velocity.z) ||
+    glm::length(velocity) > velocityLimit)
+    {
+        velocity = glm::normalize(velocity) * velocityLimit;
+    }
 
+    // Aplica wrap toroidal na posição
+    position = world.wrapToroidalPosition(position);
+    wrappedDebugPos = position;
+    
+    // Atualiza os tiros com wrap também
+    updateBullets(deltaTime, world);
+
+    // Armazena a trilha da nave
     tailPositions.push_back(position);
     if (tailPositions.size() > 30)
         tailPositions.erase(tailPositions.begin());
 
+    // Garante que o vetor forward esteja normalizado
+    forward = glm::normalize(forward);
+
+    // Atualiza matriz do modelo (posição e orientação)
     modelMatrix = glm::translate(glm::mat4(1.0f), position);
     modelMatrix *= glm::mat4_cast(glm::quatLookAt(forward, glm::vec3(0.0f, 1.0f, 0.0f)));
     modelMatrix *= glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1, 0, 0));
+
+    // Exibir informações no HUD (se existir ponteiro)
+   
+
+
 }
+
 
 void Spaceship::shoot() {
     Bullet b;
     b.position = position;
-    b.velocity = forward * 20.0f;
+    b.velocity = velocity + forward * 20.0f;
     b.lifetime = 5.0f;
     bullets.push_back(b);
 }
 
-void Spaceship::updateBullets(float deltaTime) {
-    for (auto& b : bullets) {
-        b.position += b.velocity * deltaTime;
-        b.lifetime -= deltaTime;
+void Spaceship::updateBullets(float deltaTime, const ToroidalWorld& world) {
+    for (auto& bullet : bullets) {
+        bullet.position += bullet.velocity * deltaTime;
+        bullet.position = world.wrapToroidalPosition(bullet.position);
+        bullet.lifetime -= deltaTime;
+        if (bullet.lifetime <= 0.0f) bullet.active = false;
     }
-    bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const Bullet& b) { return b.lifetime <= 0.0f; }), bullets.end());
+
+    bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
+        [](const Bullet& b) { return !b.active; }), bullets.end());
 }
+
+
 
 void Spaceship::applyCameraDirection(const glm::vec3& front, const glm::vec3& right) {
     forward = glm::normalize(front);

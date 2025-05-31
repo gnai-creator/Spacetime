@@ -32,15 +32,18 @@ double lastX = 400, lastY = 300;
 bool firstMouse = true;
 
 float radius = 5.0f;
-Spaceship ship;
 ToroidalWorld world;
 std::vector<Asteroid> asteroids;
 float asteroidSpawnTimer = 0.0f;
 
+HUD hud;
+Spaceship ship;
+
+
 void spawnRandomAsteroid() {
     glm::vec3 offset = glm::sphericalRand(60.0f);
     glm::vec3 pos = ship.getPosition() + offset;
-    glm::vec3 vel = glm::normalize(ship.getPosition() - pos) * (1.5f + glm::linearRand(0.0f, 1.0f));
+    glm::vec3 vel = glm::normalize(ship.getPosition() - pos) * (2.5f + glm::linearRand(0.0f, 1.0f));
     asteroids.emplace_back(pos, vel, 1.0f, 0);
 }
 
@@ -106,8 +109,13 @@ void checarColisoes(std::vector<Bullet>& bullets, std::vector<Asteroid>& asteroi
 }
 
 
+
 int main() {
     srand(time(0));
+
+    ship.setHUD(&hud);  // função que você criará no próximo passo
+    float x = world.getSizeX();
+    ship.setPosition(glm::vec3(60.0f, 0.0f, 0.0f));  // Um ponto longe do centro
 
     if (!glfwInit()) return -1;
 
@@ -148,7 +156,7 @@ int main() {
 
         processInput(window, deltaTime);
         world.update();
-        ship.update(world, deltaTime);
+        
 
         std::vector<Bullet>& bullets = ship.getBullets();
         for (auto& asteroid : asteroids) {
@@ -183,7 +191,7 @@ int main() {
         }
         asteroids = updatedAsteroids;
 
-        if (asteroidSpawnTimer >= 5.0f) {
+        if (asteroidSpawnTimer >= 3.0f) {
             spawnRandomAsteroid();
             asteroidSpawnTimer = 0.0f;
         }
@@ -202,7 +210,15 @@ int main() {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        HUD::render(ship);
+        ship.update(world, deltaTime);
+        hud.showDebugInfo(
+            ship.getOriginalPosition(),                      // precisa adicionar esse método
+            ship.getWrappedDebugPos(),
+            ship.getVelocity(),
+            world.cartesianToToroidal(ship.getWrappedDebugPos()),
+            world.getSizeX(), world.getSizeZ()
+        );
+
 
         Renderer::draw(world, ship, view, projection);
         for (auto& asteroid : asteroids) {
