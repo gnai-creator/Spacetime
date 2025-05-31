@@ -8,15 +8,16 @@ void ToroidalWorld::update() {
 // Converte posição cartesiana (x, y, z) para coordenadas toroidais (θ, φ)
 glm::vec2 ToroidalWorld::cartesianToToroidal(const glm::vec3& pos) const {
     float theta = atan2(pos.z, pos.x);
-    float r = glm::length(glm::vec2(pos.x, pos.z));
-    float phi = atan2(pos.y, r - R);
 
-    // Wrap manual
+    glm::vec3 local = pos - glm::vec3(R * cos(theta), 0.0f, R * sin(theta));
+    float phi = atan2(local.y, glm::length(glm::vec2(local.x, local.z)));
+
     if (theta < 0.0f) theta += 2.0f * M_PI;
     if (phi < 0.0f)   phi += 2.0f * M_PI;
 
     return glm::vec2(theta, phi);
 }
+
 
 
 // Converte coordenadas toroidais (θ, φ) para posição cartesiana (x, y, z)
@@ -29,16 +30,33 @@ glm::vec3 ToroidalWorld::toroidalToCartesian(float theta, float phi) const {
 
 
 // Aplica warp angular em θ e φ para garantir continuidade toroidal
+
 glm::vec3 ToroidalWorld::wrapToroidalPosition(const glm::vec3& pos) const {
     glm::vec2 toroidal = cartesianToToroidal(pos);
 
-    // Apenas wrap em theta (volta ao redor do toroide maior)
+    // Wrap correto em theta (ângulo maior) com fmod
     toroidal.x = fmod(toroidal.x, 2.0f * M_PI);
     if (toroidal.x < 0.0f) toroidal.x += 2.0f * M_PI;
 
-    // Não aplica wrap em phi
+    // Wrap em phi (ângulo menor) também, se necessário
+    toroidal.y = fmod(toroidal.y, 2.0f * M_PI);
+    if (toroidal.y < 0.0f) toroidal.y += 2.0f * M_PI;
+
     return toroidalToCartesian(toroidal.x, toroidal.y);
 }
+
+glm::vec3 ToroidalWorld::wrapToroidalPositionWithOffset(const glm::vec3& pos, float thetaOffset, float phiOffset) const {
+    glm::vec2 toroidal = cartesianToToroidal(pos);
+
+    toroidal.x = fmod(toroidal.x + thetaOffset, glm::two_pi<float>());
+    if (toroidal.x < 0.0f) toroidal.x += glm::two_pi<float>();
+
+    toroidal.y = fmod(toroidal.y + phiOffset, glm::two_pi<float>());
+    if (toroidal.y < 0.0f) toroidal.y += glm::two_pi<float>();
+
+    return toroidalToCartesian(toroidal.x, toroidal.y);
+}
+
 
 
 

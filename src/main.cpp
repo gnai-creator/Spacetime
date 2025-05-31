@@ -115,7 +115,7 @@ int main() {
 
     ship.setHUD(&hud);  // função que você criará no próximo passo
     float x = world.getSizeX();
-    ship.setPosition(glm::vec3(60.0f, 0.0f, 0.0f));  // Um ponto longe do centro
+    ship.setPosition(glm::vec3(100.0f, 0.0f, 0.0f));  // Um ponto longe do centro
 
     if (!glfwInit()) return -1;
 

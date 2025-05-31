@@ -4,14 +4,16 @@
 
 class ToroidalWorld {
 public:
-    float R = 1e5f;
-    float r = 1e5f;
+    float R = 20.0f;//1e5f;
+    float r = 10.0f;
     float global_time = 0.0f;
 
     void update();
     glm::vec2 cartesianToToroidal(const glm::vec3& pos) const;
     glm::vec3 toroidalToCartesian(float theta, float phi) const;
     glm::vec3 wrapToroidalPosition(const glm::vec3& pos) const;
+    glm::vec3 wrapToroidalPositionWithOffset(const glm::vec3& pos, float thetaOffset, float phiOffset) const;
+
     float computeLocalTime(const glm::vec3& pos) const;
 
     float getSizeX() const { return 2.0f * glm::pi<float>() * R; }

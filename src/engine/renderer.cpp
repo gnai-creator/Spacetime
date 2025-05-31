@@ -166,13 +166,16 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-    glm::vec3 worldSize = world.getSize();
+    for (int i = 0; i < 9; ++i) {
+        float thetaOffset = static_cast<float>(i % 3 - 1) * glm::two_pi<float>();
+        float phiOffset = static_cast<float>(i / 3 - 1) * glm::two_pi<float>();
 
-    for (int dx = -1; dx <= 1; ++dx)
-    for (int dy = -1; dy <= 1; ++dy)
-    for (int dz = -1; dz <= 1; ++dz) {
-        glm::vec3 offset = glm::vec3(dx, dy, dz) * worldSize;
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), offset) * ship.getModelMatrix();
+        glm::vec3 pos = world.wrapToroidalPositionWithOffset(ship.getPosition(), thetaOffset, phiOffset);
+
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
+        model *= glm::mat4_cast(glm::quatLookAt(ship.getForward(), glm::vec3(0.0f, 1.0f, 0.0f)));
+        model *= glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1, 0, 0));
+
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
@@ -235,7 +238,6 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
         glDeleteVertexArrays(1, &particleVAO);
     }
 
-    // Esfera de debug para posição envolvida
     drawSphere(ship.getWrappedDebugPos(), 0.15f, view, projection);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
