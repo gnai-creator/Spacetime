@@ -175,21 +175,23 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
     for (int dy = -1; dy <= 1; ++dy)
     for (int dz = -1; dz <= 1; ++dz) {
         glm::vec3 offset = glm::vec3(dx, dy, dz) * worldSize;
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), offset) * ship.modelMatrix;
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), offset) * ship.getModelMatrix();
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
 
-    for (const auto& bullet : ship.bullets) {
+    for (const auto& bullet : ship.getBullets()) {
+        if (!bullet.active) continue;
         glm::mat4 model = glm::translate(glm::mat4(1.0f), bullet.position);
         model = glm::scale(model, glm::vec3(0.05f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
 
-    if (!ship.tailPositions.empty()) {
+
+    if (!ship.getTailPositions().empty()) {
         std::vector<float> tailVertices;
-        for (const auto& p : ship.tailPositions) {
+        for (const auto& p : ship.getTailPositions()) {
             tailVertices.push_back(p.x);
             tailVertices.push_back(p.y);
             tailVertices.push_back(p.z);
@@ -202,18 +204,18 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
-        glDrawArrays(GL_LINE_STRIP, 0, ship.tailPositions.size());
+        glDrawArrays(GL_LINE_STRIP, 0, ship.getTailPositions().size());
 
         glDisableVertexAttribArray(0);
         glDeleteBuffers(1, &tailVBO);
     }
 
-    if (!ship.particles.empty()) {
+    if (!ship.getParticles().empty()) {
         std::vector<float> particleVertices;
-        for (const auto& p : ship.particles) {
-            particleVertices.push_back(p.position.x);
-            particleVertices.push_back(p.position.y);
-            particleVertices.push_back(p.position.z);
+        for (const auto& p : ship.getParticles()) {
+            particleVertices.push_back(p.x);
+            particleVertices.push_back(p.y);
+            particleVertices.push_back(p.z);
         }
 
         GLuint particleVBO, particleVAO;
@@ -228,7 +230,7 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
         glEnableVertexAttribArray(0);
 
         glPointSize(3.0f);
-        glDrawArrays(GL_POINTS, 0, ship.particles.size());
+        glDrawArrays(GL_POINTS, 0, ship.getParticles().size());
 
         glDisableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);

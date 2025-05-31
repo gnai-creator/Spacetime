@@ -265,14 +265,7 @@ CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o: \
  /usr/include/glm/detail/func_integer.inl \
  /home/sapo/code/games/Spacetime/src/engine/toroidal_world.hpp \
  /home/sapo/code/games/Spacetime/src/engine/spaceship.hpp \
- /usr/include/glm/gtx/quaternion.hpp \
- /usr/include/glm/ext/quaternion_exponential.hpp \
- /usr/include/glm/ext/quaternion_exponential.inl \
- /usr/include/glm/gtx/norm.hpp /usr/include/glm/gtx/component_wise.hpp \
- /usr/include/glm/detail/setup.hpp \
- /usr/include/glm/gtx/component_wise.inl /usr/include/glm/gtx/norm.inl \
- /usr/include/glm/gtx/quaternion.inl /usr/include/c++/11/vector \
- /usr/include/c++/11/bits/allocator.h \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/allocator.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
  /usr/include/c++/11/ext/new_allocator.h /usr/include/c++/11/new \
  /usr/include/c++/11/bits/exception.h \

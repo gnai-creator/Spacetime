@@ -1416,29 +1416,21 @@ CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o: ../src/engine/asteroid.cp
   /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/range_access.h \
   /usr/include/c++/11/bits/vector.tcc \
-  /usr/include/glm/gtc/matrix_transform.hpp \
-  /usr/include/glm/ext/matrix_projection.hpp \
+  ../src/engine/toroidal_world.hpp \
   /usr/include/glm/gtc/constants.hpp \
   /usr/include/glm/ext/scalar_constants.hpp \
   /usr/include/glm/ext/scalar_constants.inl \
   /usr/include/glm/gtc/constants.inl \
+  ../src/engine/renderer.hpp \
+  ../src/engine/spaceship.hpp \
+  /usr/include/glm/gtc/matrix_transform.hpp \
+  /usr/include/glm/ext/matrix_projection.hpp \
   /usr/include/glm/ext/matrix_projection.inl \
   /usr/include/glm/ext/matrix_clip_space.hpp \
   /usr/include/glm/ext/matrix_clip_space.inl \
   /usr/include/glm/ext/matrix_transform.hpp \
   /usr/include/glm/ext/matrix_transform.inl \
   /usr/include/glm/gtc/matrix_transform.inl \
-  /usr/include/c++/11/cstdlib \
-  /usr/include/c++/11/ctime \
-  /usr/include/time.h \
-  /usr/include/x86_64-linux-gnu/bits/time.h \
-  /usr/include/x86_64-linux-gnu/bits/timex.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
-  ../src/engine/renderer.hpp \
-  ../src/engine/toroidal_world.hpp \
-  ../src/engine/spaceship.hpp \
-  /usr/include/glm/gtx/quaternion.hpp \
   /usr/include/glm/gtc/quaternion.hpp \
   /usr/include/glm/ext/vector_relational.hpp \
   /usr/include/glm/ext/vector_relational.inl \
@@ -1463,18 +1455,98 @@ CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o: ../src/engine/asteroid.cp
   /usr/include/glm/gtc/epsilon.hpp \
   /usr/include/glm/detail/setup.hpp \
   /usr/include/glm/gtc/epsilon.inl \
+  /usr/include/GLFW/glfw3.h \
+  /usr/include/GL/gl.h \
+  /usr/include/GL/glext.h \
+  /usr/include/KHR/khrplatform.h \
+  /usr/include/c++/11/random \
+  /usr/include/c++/11/cstdlib \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/postypes.h \
+  /usr/include/c++/11/cwchar \
+  /usr/include/wchar.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+  /usr/include/c++/11/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/11/iosfwd \
+  /usr/include/c++/11/cctype \
+  /usr/include/ctype.h \
+  /usr/include/c++/11/bits/ostream_insert.h \
+  /usr/include/c++/11/bits/cxxabi_forced.h \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/bits/basic_string.h \
+  /usr/include/c++/11/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/string_view \
+  /usr/include/c++/11/bits/string_view.tcc \
+  /usr/include/c++/11/ext/string_conversions.h \
+  /usr/include/c++/11/cstdio \
+  /usr/include/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/c++/11/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/c++/11/bits/charconv.h \
+  /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/bits/random.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
+  /usr/include/c++/11/bits/random.tcc \
+  /usr/include/c++/11/numeric \
+  /usr/include/c++/11/bits/stl_numeric.h \
+  /usr/include/c++/11/bit \
+  /usr/include/c++/11/pstl/glue_numeric_defs.h \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /usr/include/glm/gtx/norm.hpp \
+  /usr/include/glm/gtx/quaternion.hpp \
   /usr/include/glm/ext/quaternion_exponential.hpp \
   /usr/include/glm/ext/quaternion_exponential.inl \
-  /usr/include/glm/gtx/norm.hpp \
+  /usr/include/glm/gtx/quaternion.inl \
   /usr/include/glm/gtx/component_wise.hpp \
   /usr/include/glm/detail/setup.hpp \
   /usr/include/glm/gtx/component_wise.inl \
   /usr/include/glm/gtx/norm.inl \
-  /usr/include/glm/gtx/quaternion.inl \
-  /usr/include/GLFW/glfw3.h \
-  /usr/include/GL/gl.h \
-  /usr/include/GL/glext.h \
-  /usr/include/KHR/khrplatform.h
+  /usr/include/glm/gtx/vector_angle.hpp \
+  /usr/include/glm/gtx/rotate_vector.hpp \
+  /usr/include/glm/gtx/transform.hpp \
+  /usr/include/glm/gtx/transform.inl \
+  /usr/include/glm/gtx/rotate_vector.inl \
+  /usr/include/glm/gtx/vector_angle.inl
 
 CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o: ../src/engine/hud.cpp \
   /usr/include/stdc-predef.h \
@@ -1740,7 +1812,6 @@ CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o: ../src/engine/hud.cpp \
   /usr/include/glm/ext/matrix_transform.hpp \
   /usr/include/glm/ext/matrix_transform.inl \
   /usr/include/glm/gtc/matrix_transform.inl \
-  /usr/include/glm/gtx/quaternion.hpp \
   /usr/include/glm/gtc/quaternion.hpp \
   /usr/include/glm/ext/vector_relational.hpp \
   /usr/include/glm/ext/vector_relational.inl \
@@ -1765,14 +1836,10 @@ CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o: ../src/engine/hud.cpp \
   /usr/include/glm/gtc/epsilon.hpp \
   /usr/include/glm/detail/setup.hpp \
   /usr/include/glm/gtc/epsilon.inl \
-  /usr/include/glm/ext/quaternion_exponential.hpp \
-  /usr/include/glm/ext/quaternion_exponential.inl \
-  /usr/include/glm/gtx/norm.hpp \
-  /usr/include/glm/gtx/component_wise.hpp \
-  /usr/include/glm/detail/setup.hpp \
-  /usr/include/glm/gtx/component_wise.inl \
-  /usr/include/glm/gtx/norm.inl \
-  /usr/include/glm/gtx/quaternion.inl \
+  /usr/include/GLFW/glfw3.h \
+  /usr/include/GL/gl.h \
+  /usr/include/GL/glext.h \
+  /usr/include/KHR/khrplatform.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/allocator.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
@@ -1791,10 +1858,6 @@ CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o: ../src/engine/hud.cpp \
   /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/range_access.h \
   /usr/include/c++/11/bits/vector.tcc \
-  /usr/include/GLFW/glfw3.h \
-  /usr/include/GL/gl.h \
-  /usr/include/GL/glext.h \
-  /usr/include/KHR/khrplatform.h \
   ../src/engine/toroidal_world.hpp \
   ../external/imgui/imgui.h \
   ../external/imgui/imconfig.h \
@@ -2111,15 +2174,6 @@ CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o: ../src/engine/renderer.cp
   /usr/include/glm/detail/func_integer.inl \
   ../src/engine/toroidal_world.hpp \
   ../src/engine/spaceship.hpp \
-  /usr/include/glm/gtx/quaternion.hpp \
-  /usr/include/glm/ext/quaternion_exponential.hpp \
-  /usr/include/glm/ext/quaternion_exponential.inl \
-  /usr/include/glm/gtx/norm.hpp \
-  /usr/include/glm/gtx/component_wise.hpp \
-  /usr/include/glm/detail/setup.hpp \
-  /usr/include/glm/gtx/component_wise.inl \
-  /usr/include/glm/gtx/norm.inl \
-  /usr/include/glm/gtx/quaternion.inl \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/allocator.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
@@ -2494,7 +2548,6 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: ../src/engine/spaceship.
   /usr/include/glm/ext/matrix_transform.hpp \
   /usr/include/glm/ext/matrix_transform.inl \
   /usr/include/glm/gtc/matrix_transform.inl \
-  /usr/include/glm/gtx/quaternion.hpp \
   /usr/include/glm/gtc/quaternion.hpp \
   /usr/include/glm/ext/vector_relational.hpp \
   /usr/include/glm/ext/vector_relational.inl \
@@ -2519,14 +2572,10 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: ../src/engine/spaceship.
   /usr/include/glm/gtc/epsilon.hpp \
   /usr/include/glm/detail/setup.hpp \
   /usr/include/glm/gtc/epsilon.inl \
-  /usr/include/glm/ext/quaternion_exponential.hpp \
-  /usr/include/glm/ext/quaternion_exponential.inl \
-  /usr/include/glm/gtx/norm.hpp \
-  /usr/include/glm/gtx/component_wise.hpp \
-  /usr/include/glm/detail/setup.hpp \
-  /usr/include/glm/gtx/component_wise.inl \
-  /usr/include/glm/gtx/norm.inl \
-  /usr/include/glm/gtx/quaternion.inl \
+  /usr/include/GLFW/glfw3.h \
+  /usr/include/GL/gl.h \
+  /usr/include/GL/glext.h \
+  /usr/include/KHR/khrplatform.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/allocator.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
@@ -2545,10 +2594,6 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: ../src/engine/spaceship.
   /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/range_access.h \
   /usr/include/c++/11/bits/vector.tcc \
-  /usr/include/GLFW/glfw3.h \
-  /usr/include/GL/gl.h \
-  /usr/include/GL/glext.h \
-  /usr/include/KHR/khrplatform.h \
   ../src/engine/toroidal_world.hpp \
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/utility \
@@ -3113,7 +3158,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   ../src/engine/hud.hpp \
   ../src/engine/spaceship.hpp \
-  /usr/include/glm/gtx/quaternion.hpp \
   /usr/include/glm/gtc/quaternion.hpp \
   /usr/include/glm/ext/vector_relational.hpp \
   /usr/include/glm/ext/vector_relational.inl \
@@ -3138,14 +3182,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/glm/gtc/epsilon.hpp \
   /usr/include/glm/detail/setup.hpp \
   /usr/include/glm/gtc/epsilon.inl \
-  /usr/include/glm/ext/quaternion_exponential.hpp \
-  /usr/include/glm/ext/quaternion_exponential.inl \
-  /usr/include/glm/gtx/norm.hpp \
-  /usr/include/glm/gtx/component_wise.hpp \
-  /usr/include/glm/detail/setup.hpp \
-  /usr/include/glm/gtx/component_wise.inl \
-  /usr/include/glm/gtx/norm.inl \
-  /usr/include/glm/gtx/quaternion.inl \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/allocator.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
@@ -3258,8 +3294,35 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/basic_ios.tcc \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/pstl/execution_defs.h
 
+
+/usr/include/c++/11/ctime:
 
 /usr/include/glm/gtc/random.inl:
 
@@ -3268,8 +3331,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 ../src/main.cpp:
 
 ../src/engine/toroidal_world.cpp:
-
-/usr/include/c++/11/pstl/execution_defs.h:
 
 /usr/include/c++/11/bits/enable_special_members.h:
 
@@ -3317,11 +3378,37 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/stdexcept:
 
-/usr/include/asm-generic/errno-base.h:
+/usr/include/c++/11/bits/locale_classes.h:
 
-/usr/include/asm-generic/errno.h:
+/usr/include/c++/11/bits/ios_base.h:
 
-/usr/include/x86_64-linux-gnu/asm/errno.h:
+/usr/include/c++/11/bits/nested_exception.h:
+
+/usr/include/c++/11/exception:
+
+/usr/include/c++/11/ios:
+
+/usr/include/c++/11/ostream:
+
+/usr/include/c++/11/cstring:
+
+/usr/include/glm/ext/vector_uint1.hpp:
+
+/usr/include/glm/ext/vector_int1_sized.hpp:
+
+/usr/include/c++/11/typeinfo:
+
+/usr/include/glm/ext/vector_int1.hpp:
+
+/usr/include/glm/ext/vector_double1.hpp:
+
+/usr/include/glm/ext/vector_float1_precision.hpp:
+
+/usr/include/glm/ext/vector_float1.hpp:
+
+/usr/include/glm/ext/vector_bool1_precision.hpp:
+
+/usr/include/glm/ext/vector_bool1.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
@@ -3332,10 +3419,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/emmintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
 
@@ -3371,13 +3454,13 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqvlintrin.h:
 
-/usr/include/c++/11/exception:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnnivlintrin.h:
 
 ../src/engine/asteroid.hpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h:
+
+/usr/include/glm/gtx/rotate_vector.hpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2vlintrin.h:
 
@@ -3430,6 +3513,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/ctype.h:
+
+/usr/include/c++/11/pstl/execution_defs.h:
 
 ../external/imgui/imconfig.h:
 
@@ -3515,8 +3600,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
 
-/usr/include/c++/11/bits/ios_base.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/wmmintrin.h:
 
 ../external/imgui/backends/imgui_impl_opengl3.h:
@@ -3525,7 +3608,11 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
-/usr/include/c++/11/cstring:
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/glm/gtc/type_ptr.inl:
+
+/usr/include/glm/common.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
@@ -3546,8 +3633,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
 
@@ -3577,6 +3662,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmivlintrin.h:
 
+/usr/include/glm/gtx/transform.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/features.h:
@@ -3604,8 +3691,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vlbwintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/glm/ext/vector_float1_precision.hpp:
 
 /usr/include/c++/11/cerrno:
 
@@ -3727,6 +3812,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/signum-arch.h:
 
+/usr/include/c++/11/random:
+
 /usr/include/glm/ext/scalar_uint_sized.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
@@ -3765,6 +3852,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/detail/type_mat4x3.inl:
 
+/usr/include/glm/gtx/transform.inl:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/shaintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
@@ -3774,6 +3863,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 ../external/imgui/imstb_textedit.h:
 
 /usr/include/x86_64-linux-gnu/sys/wait.h:
+
+/usr/include/asm-generic/errno-base.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
@@ -3785,8 +3876,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/std_abs.h:
 
-/usr/include/glm/ext/vector_double1.hpp:
-
 /usr/include/c++/11/tr1/poly_laguerre.tcc:
 
 /usr/include/glm/ext/vector_bool2.hpp:
@@ -3794,6 +3883,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/cstdlib:
 
 /usr/include/glm/detail/type_mat3x4.inl:
+
+/usr/include/c++/11/bits/stl_numeric.h:
 
 /usr/include/linux/close_range.h:
 
@@ -3884,6 +3975,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/wchar.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/c++/11/bits/random.tcc:
 
 /usr/include/c++/11/iostream:
 
@@ -4013,6 +4106,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/gtx/norm.inl:
 
+/usr/include/glm/gtx/rotate_vector.inl:
+
 ../external/imgui/imstb_rectpack.h:
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
@@ -4023,17 +4118,15 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/mat2x4.hpp:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
 ../external/imgui/imgui_tables.cpp:
 
 ../external/imgui/imgui_widgets.cpp:
 
 /usr/include/glm/ext/matrix_double4x2.hpp:
-
-/usr/include/c++/11/bits/stl_heap.h:
-
-/usr/include/glm/common.hpp:
-
-/usr/include/glm/gtc/type_ptr.inl:
 
 ../src/engine/asteroid.cpp:
 
@@ -4042,6 +4135,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/cmath:
 
 /usr/include/glm/ext/matrix_clip_space.inl:
+
+/usr/include/c++/11/numeric:
 
 /usr/include/glm/gtc/vec1.hpp:
 
@@ -4109,10 +4204,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/ext/vector_int3.hpp:
 
-/usr/include/c++/11/bits/basic_string.tcc:
-
-/usr/include/glm/ext/vector_double1_precision.hpp:
-
 /usr/include/c++/11/bits/streambuf.tcc:
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
@@ -4159,15 +4250,17 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/mat2x3.hpp:
 
-/usr/include/c++/11/bits/locale_classes.h:
+/usr/include/c++/11/bits/cxxabi_init_exception.h:
+
+/usr/include/glm/ext/matrix_float2x3.hpp:
 
 /usr/include/glm/detail/type_mat2x4.hpp:
 
 /usr/include/glm/detail/type_mat2x4.inl:
 
-/usr/include/x86_64-linux-gnu/bits/errno.h:
-
 /usr/include/glm/detail/compute_vector_relational.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/glm/ext/matrix_float2x4_precision.hpp:
 
@@ -4223,6 +4316,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/detail/type_mat4x2.inl:
 
+/usr/include/c++/11/bit:
+
 /usr/include/c++/11/ext/type_traits.h:
 
 /usr/include/glm/detail/type_mat3x3.hpp:
@@ -4273,8 +4368,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/detail/type_half.inl:
 
-/usr/include/c++/11/bits/nested_exception.h:
-
 /usr/include/glm/ext/matrix_float4x4.hpp:
 
 /usr/include/glm/detail/func_trigonometric.inl:
@@ -4303,6 +4396,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/functional_hash.h:
 
+../src/engine/toroidal_world.hpp:
+
 /usr/include/c++/11/ext/aligned_buffer.h:
 
 /usr/include/c++/11/bits/locale_classes.tcc:
@@ -4313,27 +4408,9 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/ext/scalar_constants.inl:
 
-/usr/include/c++/11/ctime:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/glm/ext/quaternion_double_precision.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
 /usr/include/glm/detail/type_vec3.inl:
 
 ../src/engine/renderer.hpp:
-
-../src/engine/toroidal_world.hpp:
-
-/usr/include/c++/11/typeinfo:
-
-/usr/include/glm/ext/vector_int1.hpp:
-
-/usr/include/c++/11/bits/uniform_int_dist.h:
-
-/usr/include/glm/gtx/quaternion.hpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/movdirintrin.h:
 
@@ -4344,6 +4421,10 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/glm/ext/quaternion_geometric.inl:
 
 /usr/include/glm/ext/quaternion_double.hpp:
+
+/usr/include/glm/ext/quaternion_double_precision.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512dqintrin.h:
 
@@ -4363,55 +4444,13 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/glm/gtc/epsilon.inl:
 
-/usr/include/glm/ext/quaternion_exponential.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/sigstack.h:
-
-/usr/include/c++/11/ext/numeric_traits.h:
-
-/usr/include/glm/ext/quaternion_exponential.inl:
-
-/usr/include/glm/gtx/norm.hpp:
-
-/usr/include/c++/11/ext/atomicity.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
-
-/usr/include/glm/gtx/quaternion.inl:
-
-/usr/include/signal.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectintrin.h:
-
-../src/engine/hud.cpp:
-
-/usr/include/linux/errno.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
-
-/usr/include/GL/glu.h:
-
-/usr/include/glm/gtc/type_ptr.hpp:
-
-/usr/include/glm/ext/vector_bool1.hpp:
-
-/usr/include/glm/ext/vector_bool1_precision.hpp:
-
-/usr/include/glm/ext/vector_float1.hpp:
-
-/usr/include/glm/ext/vector_int1_sized.hpp:
-
-/usr/include/glm/ext/vector_uint1.hpp:
-
-/usr/include/c++/11/ostream:
-
-/usr/include/c++/11/ios:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/xsaveintrin.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/c++/11/bits/char_traits.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/fmaintrin.h:
 
@@ -4419,7 +4458,53 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/cwchar:
 
-/usr/include/c++/11/bits/charconv.h:
+/usr/include/signal.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+
+/usr/include/glm/gtx/quaternion.inl:
+
+/usr/include/c++/11/bits/localefwd.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectintrin.h:
+
+../src/engine/hud.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/c++/11/pstl/glue_numeric_defs.h:
+
+/usr/include/c++/11/ext/atomicity.h:
+
+/usr/include/glm/gtx/norm.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+/usr/include/c++/11/bits/string_view.tcc:
+
+/usr/include/c++/11/bits/alloc_traits.h:
+
+/usr/include/errno.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/c++/11/bits/exception_ptr.h:
 
 /usr/include/math.h:
 
@@ -4429,30 +4514,34 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
 
-/usr/include/c++/11/bits/exception_ptr.h:
+/usr/include/c++/11/bits/charconv.h:
 
-/usr/include/glm/ext/matrix_float2x3.hpp:
+/usr/include/glm/ext/vector_double1_precision.hpp:
 
-/usr/include/c++/11/bits/cxxabi_init_exception.h:
+/usr/include/c++/11/bits/basic_string.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+/usr/include/c++/11/bits/random.h:
 
-/usr/include/c++/11/bits/char_traits.h:
+/usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/include/c++/11/bits/localefwd.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+/usr/include/c++/11/bits/uniform_int_dist.h:
 
-/usr/include/x86_64-linux-gnu/bits/locale.h:
+/usr/include/glm/gtx/quaternion.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+/usr/include/glm/ext/quaternion_exponential.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+/usr/include/c++/11/ext/numeric_traits.h:
 
-/usr/include/c++/11/bits/string_view.tcc:
+/usr/include/glm/ext/quaternion_exponential.inl:
 
-/usr/include/c++/11/bits/alloc_traits.h:
+/usr/include/glm/gtx/vector_angle.hpp:
 
-/usr/include/errno.h:
+/usr/include/glm/gtx/vector_angle.inl:
+
+/usr/include/GL/glu.h:
+
+/usr/include/glm/gtc/type_ptr.hpp:

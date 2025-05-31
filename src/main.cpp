@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 GLFWwindow* window;
 float deltaTime = 0.0f;
@@ -37,9 +38,10 @@ std::vector<Asteroid> asteroids;
 float asteroidSpawnTimer = 0.0f;
 
 void spawnRandomAsteroid() {
-    glm::vec3 pos = glm::linearRand(glm::vec3(-200, -100, -200), glm::vec3(200, 100, 200));
-    glm::vec3 vel = glm::ballRand(1.0f);
-    asteroids.emplace_back(pos, vel, 1.0f);
+    glm::vec3 offset = glm::sphericalRand(60.0f);
+    glm::vec3 pos = ship.getPosition() + offset;
+    glm::vec3 vel = glm::normalize(ship.getPosition() - pos) * (1.5f + glm::linearRand(0.0f, 1.0f));
+    asteroids.emplace_back(pos, vel, 1.0f, 0);
 }
 
 void breakAsteroid(const Asteroid& original, int generation) {
@@ -81,6 +83,29 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     ship.applyRotationFromMouse(xoffset, yoffset);
 }
 
+void checarColisoes(std::vector<Bullet>& bullets, std::vector<Asteroid>& asteroids) {
+    for (auto& asteroid : asteroids) {
+        if (asteroid.isDestroyed()) continue;
+
+        for (auto& bullet : bullets) {
+            if (!bullet.active) continue;
+
+            float dist = glm::distance(asteroid.getPosition(), bullet.position);
+            if (dist < asteroid.getSize()) {
+                asteroid.destroy();     // método precisa existir
+                bullet.active = false; // bullet precisa ter o campo `.active`
+                break;
+            }
+        }
+    }
+
+    // Remove balas inativas
+    bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
+                                 [](const Bullet& b) { return !b.active; }),
+                  bullets.end());
+}
+
+
 int main() {
     srand(time(0));
 
@@ -111,7 +136,6 @@ int main() {
 
     if (!Renderer::init()) return -1;
 
-    // Inicial: alguns asteroides
     for (int i = 0; i < 5; ++i) {
         spawnRandomAsteroid();
     }
@@ -126,10 +150,31 @@ int main() {
         world.update();
         ship.update(world, deltaTime);
 
-        // Atualiza e remove asteroides destruídos
+        std::vector<Bullet>& bullets = ship.getBullets();
+        for (auto& asteroid : asteroids) {
+            if (asteroid.isDestroyed()) continue;
+            for (auto& bullet : bullets) {
+                if (!bullet.active) continue;
+                float dist = glm::distance(asteroid.getPosition(), bullet.position);
+                if (dist < asteroid.getSize()) {
+                    asteroid.destroy();
+                    bullet.active = false;
+                    break;
+                }
+            }
+        }
+        bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const Bullet& b) { return !b.active; }), bullets.end());
+
         std::vector<Asteroid> updatedAsteroids;
         for (auto& asteroid : asteroids) {
-            asteroid.update(deltaTime);
+            asteroid.update(deltaTime, world);
+
+            float dist = glm::distance(asteroid.getPosition(), ship.getPosition());
+            if (dist < asteroid.getSize() + 1.0f) {
+                std::cout << "[CRITICAL] Nave colidiu com asteroide!\n";
+                // Aqui poderia aplicar lógica de destruição da nave
+            }
+
             if (asteroid.isDestroyed()) {
                 breakAsteroid(asteroid, asteroid.getGeneration());
             } else {
@@ -138,7 +183,6 @@ int main() {
         }
         asteroids = updatedAsteroids;
 
-        // Spawn periódico
         if (asteroidSpawnTimer >= 5.0f) {
             spawnRandomAsteroid();
             asteroidSpawnTimer = 0.0f;

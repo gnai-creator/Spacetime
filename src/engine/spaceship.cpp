@@ -54,19 +54,17 @@ void Spaceship::update(const ToroidalWorld& world, float deltaTime) {
         tailPositions.erase(tailPositions.begin());
 
     modelMatrix = glm::translate(glm::mat4(1.0f), position);
-    // modelMatrix = glm::rotate(modelMatrix, glm::radians(yaw), glm::vec3(0,1,0)); // ou outro eixo
     modelMatrix *= glm::mat4_cast(glm::quatLookAt(forward, glm::vec3(0.0f, 1.0f, 0.0f)));
     modelMatrix *= glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1, 0, 0));
 }
-
 
 void Spaceship::shoot() {
     Bullet b;
     b.position = position;
     b.velocity = forward * 20.0f;
+    b.lifetime = 5.0f;
     bullets.push_back(b);
 }
-
 
 void Spaceship::updateBullets(float deltaTime) {
     for (auto& b : bullets) {
@@ -78,4 +76,31 @@ void Spaceship::updateBullets(float deltaTime) {
 
 void Spaceship::applyCameraDirection(const glm::vec3& front, const glm::vec3& right) {
     forward = glm::normalize(front);
+}
+
+const glm::vec3& Spaceship::getPosition() const {
+    return position;
+}
+
+const glm::vec3& Spaceship::getForward() const {
+    return forward;
+}
+
+const glm::mat4& Spaceship::getModelMatrix() const {
+    return modelMatrix;
+}
+
+const std::vector<Bullet>& Spaceship::getBullets() const {
+    return bullets;
+}
+
+std::vector<Bullet>& getBullets() {
+    return getBullets();
+}
+
+const std::vector<glm::vec3>& Spaceship::getTailPositions() const {
+    return tailPositions;
+}
+const std::vector<glm::vec3>& Spaceship::getParticles() const {
+    return particles;
 }
