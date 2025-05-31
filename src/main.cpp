@@ -1,22 +1,25 @@
-// PRIMEIRO: GLEW
-#include <GL/glew.h>
+// ===== main.cpp =====
 
-// DEPOIS: os outros
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/random.hpp>
+#include <cstdlib>
+#include <ctime>
 
 #include "hud.hpp"
 #include "spaceship.hpp"
 #include "toroidal_world.hpp"
 #include "renderer.hpp"
+#include "asteroid.hpp"
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
 #include <iostream>
-
+#include <vector>
 
 GLFWwindow* window;
 float deltaTime = 0.0f;
@@ -30,6 +33,25 @@ bool firstMouse = true;
 float radius = 5.0f;
 Spaceship ship;
 ToroidalWorld world;
+std::vector<Asteroid> asteroids;
+float asteroidSpawnTimer = 0.0f;
+
+void spawnRandomAsteroid() {
+    glm::vec3 pos = glm::linearRand(glm::vec3(-200, -100, -200), glm::vec3(200, 100, 200));
+    glm::vec3 vel = glm::ballRand(1.0f);
+    asteroids.emplace_back(pos, vel, 1.0f);
+}
+
+void breakAsteroid(const Asteroid& original, int generation) {
+    if (generation >= 2) return;
+    int count = rand() % 4; // 0 a 3 novos asteroides
+    for (int i = 0; i < count; ++i) {
+        glm::vec3 offset = glm::ballRand(1.0f);
+        glm::vec3 newPos = original.getPosition() + offset;
+        glm::vec3 newVel = glm::ballRand(2.0f);
+        asteroids.emplace_back(newPos, newVel, 0.5f, generation + 1);
+    }
+}
 
 void processInput(GLFWwindow* window, float deltaTime) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -52,7 +74,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     }
 
     float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos; // Invertido por convenção
+    float yoffset = lastY - ypos;
     lastX = xpos;
     lastY = ypos;
 
@@ -60,9 +82,16 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 }
 
 int main() {
+    srand(time(0));
+
     if (!glfwInit()) return -1;
 
-    window = glfwCreateWindow(800, 600, "Toroid Engine", NULL, NULL);
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    int screenWidth = mode->width;
+    int screenHeight = mode->height;
+
+    window = glfwCreateWindow(screenWidth, screenHeight, "Toroid Engine", monitor, NULL);
     if (!window) return -1;
 
     glfwMakeContextCurrent(window);
@@ -82,21 +111,48 @@ int main() {
 
     if (!Renderer::init()) return -1;
 
+    // Inicial: alguns asteroides
+    for (int i = 0; i < 5; ++i) {
+        spawnRandomAsteroid();
+    }
+
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
+        asteroidSpawnTimer += deltaTime;
 
         processInput(window, deltaTime);
         world.update();
         ship.update(world, deltaTime);
+
+        // Atualiza e remove asteroides destruídos
+        std::vector<Asteroid> updatedAsteroids;
+        for (auto& asteroid : asteroids) {
+            asteroid.update(deltaTime);
+            if (asteroid.isDestroyed()) {
+                breakAsteroid(asteroid, asteroid.getGeneration());
+            } else {
+                updatedAsteroids.push_back(asteroid);
+            }
+        }
+        asteroids = updatedAsteroids;
+
+        // Spawn periódico
+        if (asteroidSpawnTimer >= 5.0f) {
+            spawnRandomAsteroid();
+            asteroidSpawnTimer = 0.0f;
+        }
 
         glm::vec3 cameraOffset = -ship.getForward() * radius + glm::vec3(0.0f, 1.5f, 0.0f);
         glm::vec3 cameraPos = ship.getPosition() + cameraOffset;
         glm::vec3 cameraTarget = ship.getPosition() + ship.getForward() * 2.0f;
 
         glm::mat4 view = glm::lookAt(cameraPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
-        glm::mat4 projection = glm::perspective(glm::radians(fov), 800.0f / 600.0f, 0.1f, 100.0f);
+
+        int width, height;
+        glfwGetFramebufferSize(window, &width, &height);
+        glm::mat4 projection = glm::perspective(glm::radians(fov), (float)width / (float)height, 0.1f, 100.0f);
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -105,6 +161,9 @@ int main() {
         HUD::render(ship);
 
         Renderer::draw(world, ship, view, projection);
+        for (auto& asteroid : asteroids) {
+            asteroid.render(view, projection);
+        }
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/sapo/code/games/Spacetime/external/imgui/imgui_draw.cpp" "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o" "gcc" "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o.d"
   "/home/sapo/code/games/Spacetime/external/imgui/imgui_tables.cpp" "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o" "gcc" "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o.d"
   "/home/sapo/code/games/Spacetime/external/imgui/imgui_widgets.cpp" "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o" "gcc" "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o.d"
+  "/home/sapo/code/games/Spacetime/src/engine/asteroid.cpp" "CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o" "gcc" "CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o.d"
   "/home/sapo/code/games/Spacetime/src/engine/hud.cpp" "CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o" "gcc" "CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o.d"
   "/home/sapo/code/games/Spacetime/src/engine/renderer.cpp" "CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o" "gcc" "CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o.d"
   "/home/sapo/code/games/Spacetime/src/engine/spaceship.cpp" "CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o" "gcc" "CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o.d"

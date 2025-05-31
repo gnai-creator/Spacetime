@@ -1,4 +1,3 @@
-
 // renderer.cpp
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -6,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "renderer.hpp"
 #include <iostream>
+#include <vector>
 
 static GLuint shaderProgram;
 
@@ -63,6 +63,84 @@ GLuint Renderer::loadShaders() {
 
     return program;
 }
+
+void Renderer::drawGrid(float worldSizeX, float worldSizeZ, int divisions) {
+    glDisable(GL_TEXTURE_2D);
+    glBegin(GL_LINES);
+
+    glColor3f(0.3f, 0.3f, 0.3f);
+
+    float dx = worldSizeX / divisions;
+    float dz = worldSizeZ / divisions;
+
+    for (int i = 0; i <= divisions; ++i) {
+        float x = -worldSizeX / 2 + i * dx;
+        glVertex3f(x, 0.0f, -worldSizeZ / 2);
+        glVertex3f(x, 0.0f,  worldSizeZ / 2);
+    }
+
+    for (int i = 0; i <= divisions; ++i) {
+        float z = -worldSizeZ / 2 + i * dz;
+        glVertex3f(-worldSizeX / 2, 0.0f, z);
+        glVertex3f( worldSizeX / 2, 0.0f, z);
+    }
+
+    glEnd();
+}
+
+void Renderer::drawSphere(const glm::vec3& position, float radius, const glm::mat4& view, const glm::mat4& projection) {
+    glUseProgram(shaderProgram);
+
+    static std::vector<glm::vec3> sphereVertices;
+    static bool initialized = false;
+
+    if (!initialized) {
+        const int stacks = 10, slices = 10;
+        for (int i = 0; i <= stacks; ++i) {
+            float phi = glm::pi<float>() * float(i) / float(stacks);
+            for (int j = 0; j <= slices; ++j) {
+                float theta = glm::two_pi<float>() * float(j) / float(slices);
+                float x = sin(phi) * cos(theta);
+                float y = cos(phi);
+                float z = sin(phi) * sin(theta);
+                sphereVertices.emplace_back(x, y, z);
+            }
+        }
+        initialized = true;
+    }
+
+    GLuint vao, vbo;
+    glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
+
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sphereVertices.size() * sizeof(glm::vec3), sphereVertices.data(), GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    GLint modelLoc = glGetUniformLocation(shaderProgram, "model");
+    GLint viewLoc  = glGetUniformLocation(shaderProgram, "view");
+    GLint projLoc  = glGetUniformLocation(shaderProgram, "projection");
+
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), position);
+    model = glm::scale(model, glm::vec3(radius));
+    
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+    glDrawArrays(GL_POINTS, 0, sphereVertices.size());
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glDeleteBuffers(1, &vbo);
+    glDeleteVertexArrays(1, &vao);
+}
+
+
+
 
 void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

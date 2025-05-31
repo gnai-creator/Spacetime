@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o.d"
   "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o"
   "CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o.d"
+  "CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o"
+  "CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o.d"
   "CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o"
   "CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o.d"
   "CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o"

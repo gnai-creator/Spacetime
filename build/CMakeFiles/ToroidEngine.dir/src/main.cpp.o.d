@@ -226,6 +226,12 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/glm/ext/matrix_transform.hpp \
  /usr/include/glm/ext/matrix_transform.inl \
  /usr/include/glm/gtc/matrix_transform.inl \
+ /usr/include/glm/gtc/random.hpp /usr/include/glm/gtc/random.inl \
+ /usr/include/c++/11/cstdlib /usr/include/c++/11/ctime \
+ /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /home/sapo/code/games/Spacetime/src/engine/hud.hpp \
  /home/sapo/code/games/Spacetime/src/engine/spaceship.hpp \
  /usr/include/glm/gtx/quaternion.hpp /usr/include/glm/gtc/quaternion.hpp \
@@ -274,6 +280,7 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/vector.tcc \
  /home/sapo/code/games/Spacetime/src/engine/toroidal_world.hpp \
  /home/sapo/code/games/Spacetime/src/engine/renderer.hpp \
+ /home/sapo/code/games/Spacetime/src/engine/asteroid.hpp \
  /home/sapo/code/games/Spacetime/external/imgui/imgui.h \
  /home/sapo/code/games/Spacetime/external/imgui/imconfig.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h /usr/include/string.h \
@@ -304,11 +311,7 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
- /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/timex.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
@@ -320,9 +323,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/c++/11/backward/binders.h \
  /usr/include/c++/11/bits/basic_string.h /usr/include/c++/11/string_view \
  /usr/include/c++/11/bits/string_view.tcc \
- /usr/include/c++/11/ext/string_conversions.h /usr/include/c++/11/cstdlib \
- /usr/include/c++/11/cstdio /usr/include/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/c++/11/ext/string_conversions.h /usr/include/c++/11/cstdio \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \

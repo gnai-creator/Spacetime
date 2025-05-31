@@ -297,6 +297,30 @@ external/imgui/imgui_widgets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.s
 .PHONY : external/imgui/imgui_widgets.cpp.s
 
+src/engine/asteroid.o: src/engine/asteroid.cpp.o
+.PHONY : src/engine/asteroid.o
+
+# target to build an object file
+src/engine/asteroid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o
+.PHONY : src/engine/asteroid.cpp.o
+
+src/engine/asteroid.i: src/engine/asteroid.cpp.i
+.PHONY : src/engine/asteroid.i
+
+# target to preprocess a source file
+src/engine/asteroid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.i
+.PHONY : src/engine/asteroid.cpp.i
+
+src/engine/asteroid.s: src/engine/asteroid.cpp.s
+.PHONY : src/engine/asteroid.s
+
+# target to generate assembly for a file
+src/engine/asteroid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.s
+.PHONY : src/engine/asteroid.cpp.s
+
 src/engine/hud.o: src/engine/hud.cpp.o
 .PHONY : src/engine/hud.o
 
@@ -447,6 +471,9 @@ help:
 	@echo "... external/imgui/imgui_widgets.o"
 	@echo "... external/imgui/imgui_widgets.i"
 	@echo "... external/imgui/imgui_widgets.s"
+	@echo "... src/engine/asteroid.o"
+	@echo "... src/engine/asteroid.i"
+	@echo "... src/engine/asteroid.s"
 	@echo "... src/engine/hud.o"
 	@echo "... src/engine/hud.i"
 	@echo "... src/engine/hud.s"

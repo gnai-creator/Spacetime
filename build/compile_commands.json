@@ -1,6 +1,11 @@
 [
 {
   "directory": "/home/sapo/code/games/Spacetime/build",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -g -o CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/asteroid.cpp",
+  "file": "/home/sapo/code/games/Spacetime/src/engine/asteroid.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime/build",
   "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -g -o CMakeFiles/ToroidEngine.dir/src/engine/hud.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/hud.cpp",
   "file": "/home/sapo/code/games/Spacetime/src/engine/hud.cpp"
 },

@@ -1,7 +1,7 @@
-CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o: \
- /home/sapo/code/games/Spacetime/src/engine/toroidal_world.cpp \
+CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o: \
+ /home/sapo/code/games/Spacetime/src/engine/asteroid.cpp \
  /usr/include/stdc-predef.h \
- /home/sapo/code/games/Spacetime/src/engine/toroidal_world.hpp \
+ /home/sapo/code/games/Spacetime/src/engine/asteroid.hpp \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -214,8 +214,70 @@ CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o: \
  /usr/include/glm/packing.hpp /usr/include/glm/detail/func_packing.inl \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
- /usr/include/glm/detail/func_integer.inl \
+ /usr/include/glm/detail/func_integer.inl /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+ /usr/include/c++/11/ext/new_allocator.h /usr/include/c++/11/new \
+ /usr/include/c++/11/bits/exception.h \
+ /usr/include/c++/11/bits/memoryfwd.h \
+ /usr/include/c++/11/bits/stl_construct.h \
+ /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/ext/alloc_traits.h \
+ /usr/include/c++/11/bits/alloc_traits.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/initializer_list \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/functional_hash.h \
+ /usr/include/c++/11/bits/hash_bytes.h \
+ /usr/include/c++/11/bits/range_access.h \
+ /usr/include/c++/11/bits/vector.tcc \
+ /usr/include/glm/gtc/matrix_transform.hpp \
+ /usr/include/glm/ext/matrix_projection.hpp \
  /usr/include/glm/gtc/constants.hpp \
  /usr/include/glm/ext/scalar_constants.hpp \
  /usr/include/glm/ext/scalar_constants.inl \
- /usr/include/glm/gtc/constants.inl
+ /usr/include/glm/gtc/constants.inl \
+ /usr/include/glm/ext/matrix_projection.inl \
+ /usr/include/glm/ext/matrix_clip_space.hpp \
+ /usr/include/glm/ext/matrix_clip_space.inl \
+ /usr/include/glm/ext/matrix_transform.hpp \
+ /usr/include/glm/ext/matrix_transform.inl \
+ /usr/include/glm/gtc/matrix_transform.inl /usr/include/c++/11/cstdlib \
+ /usr/include/c++/11/ctime /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /home/sapo/code/games/Spacetime/src/engine/renderer.hpp \
+ /home/sapo/code/games/Spacetime/src/engine/toroidal_world.hpp \
+ /home/sapo/code/games/Spacetime/src/engine/spaceship.hpp \
+ /usr/include/glm/gtx/quaternion.hpp /usr/include/glm/gtc/quaternion.hpp \
+ /usr/include/glm/ext/vector_relational.hpp \
+ /usr/include/glm/ext/vector_relational.inl \
+ /usr/include/glm/detail/type_float.hpp \
+ /usr/include/glm/ext/quaternion_common.hpp \
+ /usr/include/glm/ext/quaternion_geometric.hpp \
+ /usr/include/glm/ext/quaternion_geometric.inl \
+ /usr/include/glm/ext/quaternion_common.inl \
+ /usr/include/glm/ext/quaternion_float.hpp \
+ /usr/include/glm/detail/type_quat.hpp \
+ /usr/include/glm/ext/quaternion_relational.hpp \
+ /usr/include/glm/ext/quaternion_relational.inl \
+ /usr/include/glm/detail/type_quat.inl \
+ /usr/include/glm/ext/quaternion_float_precision.hpp \
+ /usr/include/glm/ext/quaternion_double.hpp \
+ /usr/include/glm/ext/quaternion_double_precision.hpp \
+ /usr/include/glm/ext/quaternion_trigonometric.hpp \
+ /usr/include/glm/ext/quaternion_trigonometric.inl \
+ /usr/include/glm/ext/quaternion_transform.hpp \
+ /usr/include/glm/ext/quaternion_transform.inl \
+ /usr/include/glm/gtc/quaternion.inl /usr/include/glm/gtc/epsilon.hpp \
+ /usr/include/glm/detail/setup.hpp /usr/include/glm/gtc/epsilon.inl \
+ /usr/include/glm/ext/quaternion_exponential.hpp \
+ /usr/include/glm/ext/quaternion_exponential.inl \
+ /usr/include/glm/gtx/norm.hpp /usr/include/glm/gtx/component_wise.hpp \
+ /usr/include/glm/detail/setup.hpp \
+ /usr/include/glm/gtx/component_wise.inl /usr/include/glm/gtx/norm.inl \
+ /usr/include/glm/gtx/quaternion.inl /usr/include/GLFW/glfw3.h \
+ /usr/include/GL/gl.h /usr/include/GL/glext.h \
+ /usr/include/KHR/khrplatform.h
