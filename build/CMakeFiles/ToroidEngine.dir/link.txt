@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o CMakeFiles/ToroidEngine.dir/src/main.cpp.o -o ToroidEngine  -lGLEW -lGL -lX11 -lGLU -lglfw /usr/lib/x86_64-linux-gnu/libGL.so 

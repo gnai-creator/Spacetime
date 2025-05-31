@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/renderer.cpp",
+  "file": "/home/sapo/code/games/Spacetime/src/engine/renderer.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/spaceship.cpp",
+  "file": "/home/sapo/code/games/Spacetime/src/engine/spaceship.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/world.cpp",
+  "file": "/home/sapo/code/games/Spacetime/src/engine/world.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/main.cpp.o -c /home/sapo/code/games/Spacetime/src/main.cpp",
+  "file": "/home/sapo/code/games/Spacetime/src/main.cpp"
+}
+]

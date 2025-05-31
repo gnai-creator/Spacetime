@@ -1,0 +1,3 @@
+/home/sapo/code/games/Spacetime/build/CMakeFiles/ToroidEngine.dir
+/home/sapo/code/games/Spacetime/build/CMakeFiles/edit_cache.dir
+/home/sapo/code/games/Spacetime/build/CMakeFiles/rebuild_cache.dir
