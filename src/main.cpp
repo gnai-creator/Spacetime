@@ -1,50 +1,41 @@
-// ===== main.cpp =====
+// PRIMEIRO: GLEW
 #include <GL/glew.h>
+
+// DEPOIS: os outros
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
+#include "hud.hpp"
+#include "spaceship.hpp"
+#include "toroidal_world.hpp"
+#include "renderer.hpp"
+
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
 #include <iostream>
-#include "engine/world.hpp"
-#include "engine/spaceship.hpp"
-#include "engine/renderer.hpp"
+
 
 GLFWwindow* window;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
 float yaw = -90.0f, pitch = 0.0f;
-float fov = 45.0f;
+float fov = 115.0f;
 double lastX = 400, lastY = 300;
 bool firstMouse = true;
 
 float radius = 5.0f;
 Spaceship ship;
+ToroidalWorld world;
 
-void processInput(GLFWwindow* window) {
+void processInput(GLFWwindow* window, float deltaTime) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
-    glm::vec3 front;
-    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    front.y = sin(glm::radians(pitch));
-    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    front = glm::normalize(front);
-
-    glm::vec3 right = glm::normalize(glm::cross(front, glm::vec3(0.0f, 1.0f, 0.0f)));
-
-    ship.applyCameraDirection(front, right);
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        ship.velocity += front * 8.0f * deltaTime;
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        ship.velocity -= front * 8.0f * deltaTime;
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        ship.velocity -= right * 4.0f * deltaTime;
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        ship.velocity += right * 4.0f * deltaTime;
-
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        ship.shoot();
+    ship.processInput(window, deltaTime);
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
@@ -61,19 +52,11 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     }
 
     float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos;
+    float yoffset = lastY - ypos; // Invertido por convenção
     lastX = xpos;
     lastY = ypos;
 
-    float sensitivity = 0.1f;
-    xoffset *= sensitivity;
-    yoffset *= sensitivity;
-
-    yaw += xoffset;
-    pitch += yoffset;
-
-    if (pitch > 89.0f) pitch = 89.0f;
-    if (pitch < -89.0f) pitch = -89.0f;
+    ship.applyRotationFromMouse(xoffset, yoffset);
 }
 
 int main() {
@@ -87,37 +70,54 @@ int main() {
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    if (!Renderer::init()) return -1;
+    glewExperimental = GL_TRUE;
+    if (glewInit() != GLEW_OK) return -1;
 
-    World world;
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
+
+    if (!Renderer::init()) return -1;
 
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        processInput(window);
+        processInput(window, deltaTime);
         world.update();
         ship.update(world, deltaTime);
 
-        glm::vec3 direction;
-        direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-        direction.y = sin(glm::radians(pitch));
-        direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-
-        glm::vec3 cameraOffset = glm::normalize(-direction) * radius + glm::vec3(0.0f, 1.5f, 0.0f);
-        glm::vec3 cameraPos = ship.position + cameraOffset;
-        glm::vec3 cameraTarget = ship.position + ship.forward * 2.0f;
+        glm::vec3 cameraOffset = -ship.getForward() * radius + glm::vec3(0.0f, 1.5f, 0.0f);
+        glm::vec3 cameraPos = ship.getPosition() + cameraOffset;
+        glm::vec3 cameraTarget = ship.getPosition() + ship.getForward() * 2.0f;
 
         glm::mat4 view = glm::lookAt(cameraPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
         glm::mat4 projection = glm::perspective(glm::radians(fov), 800.0f / 600.0f, 0.1f, 100.0f);
 
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        HUD::render(ship);
+
         Renderer::draw(world, ship, view, projection);
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
+    glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
 }

@@ -1,3 +1,4 @@
+
 // renderer.cpp
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -63,7 +64,7 @@ GLuint Renderer::loadShaders() {
     return program;
 }
 
-void Renderer::draw(const World& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection) {
+void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(shaderProgram);
 
@@ -90,10 +91,12 @@ void Renderer::draw(const World& world, const Spaceship& ship, const glm::mat4& 
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
+    glm::vec3 worldSize = world.getSize();
+
     for (int dx = -1; dx <= 1; ++dx)
     for (int dy = -1; dy <= 1; ++dy)
     for (int dz = -1; dz <= 1; ++dz) {
-        glm::vec3 offset = glm::vec3(dx, dy, dz) * world.size;
+        glm::vec3 offset = glm::vec3(dx, dy, dz) * worldSize;
         glm::mat4 model = glm::translate(glm::mat4(1.0f), offset) * ship.modelMatrix;
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -155,7 +158,6 @@ void Renderer::draw(const World& world, const Spaceship& ship, const glm::mat4& 
         glDeleteBuffers(1, &particleVBO);
         glDeleteVertexArrays(1, &particleVAO);
     }
-
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);

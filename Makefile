@@ -129,6 +129,174 @@ ToroidEngine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/build
 .PHONY : ToroidEngine/fast
 
+external/imgui/backends/imgui_impl_glfw.o: external/imgui/backends/imgui_impl_glfw.cpp.o
+.PHONY : external/imgui/backends/imgui_impl_glfw.o
+
+# target to build an object file
+external/imgui/backends/imgui_impl_glfw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o
+.PHONY : external/imgui/backends/imgui_impl_glfw.cpp.o
+
+external/imgui/backends/imgui_impl_glfw.i: external/imgui/backends/imgui_impl_glfw.cpp.i
+.PHONY : external/imgui/backends/imgui_impl_glfw.i
+
+# target to preprocess a source file
+external/imgui/backends/imgui_impl_glfw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.i
+.PHONY : external/imgui/backends/imgui_impl_glfw.cpp.i
+
+external/imgui/backends/imgui_impl_glfw.s: external/imgui/backends/imgui_impl_glfw.cpp.s
+.PHONY : external/imgui/backends/imgui_impl_glfw.s
+
+# target to generate assembly for a file
+external/imgui/backends/imgui_impl_glfw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.s
+.PHONY : external/imgui/backends/imgui_impl_glfw.cpp.s
+
+external/imgui/backends/imgui_impl_opengl3.o: external/imgui/backends/imgui_impl_opengl3.cpp.o
+.PHONY : external/imgui/backends/imgui_impl_opengl3.o
+
+# target to build an object file
+external/imgui/backends/imgui_impl_opengl3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o
+.PHONY : external/imgui/backends/imgui_impl_opengl3.cpp.o
+
+external/imgui/backends/imgui_impl_opengl3.i: external/imgui/backends/imgui_impl_opengl3.cpp.i
+.PHONY : external/imgui/backends/imgui_impl_opengl3.i
+
+# target to preprocess a source file
+external/imgui/backends/imgui_impl_opengl3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.i
+.PHONY : external/imgui/backends/imgui_impl_opengl3.cpp.i
+
+external/imgui/backends/imgui_impl_opengl3.s: external/imgui/backends/imgui_impl_opengl3.cpp.s
+.PHONY : external/imgui/backends/imgui_impl_opengl3.s
+
+# target to generate assembly for a file
+external/imgui/backends/imgui_impl_opengl3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.s
+.PHONY : external/imgui/backends/imgui_impl_opengl3.cpp.s
+
+external/imgui/imgui.o: external/imgui/imgui.cpp.o
+.PHONY : external/imgui/imgui.o
+
+# target to build an object file
+external/imgui/imgui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o
+.PHONY : external/imgui/imgui.cpp.o
+
+external/imgui/imgui.i: external/imgui/imgui.cpp.i
+.PHONY : external/imgui/imgui.i
+
+# target to preprocess a source file
+external/imgui/imgui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.i
+.PHONY : external/imgui/imgui.cpp.i
+
+external/imgui/imgui.s: external/imgui/imgui.cpp.s
+.PHONY : external/imgui/imgui.s
+
+# target to generate assembly for a file
+external/imgui/imgui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.s
+.PHONY : external/imgui/imgui.cpp.s
+
+external/imgui/imgui_demo.o: external/imgui/imgui_demo.cpp.o
+.PHONY : external/imgui/imgui_demo.o
+
+# target to build an object file
+external/imgui/imgui_demo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o
+.PHONY : external/imgui/imgui_demo.cpp.o
+
+external/imgui/imgui_demo.i: external/imgui/imgui_demo.cpp.i
+.PHONY : external/imgui/imgui_demo.i
+
+# target to preprocess a source file
+external/imgui/imgui_demo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.i
+.PHONY : external/imgui/imgui_demo.cpp.i
+
+external/imgui/imgui_demo.s: external/imgui/imgui_demo.cpp.s
+.PHONY : external/imgui/imgui_demo.s
+
+# target to generate assembly for a file
+external/imgui/imgui_demo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.s
+.PHONY : external/imgui/imgui_demo.cpp.s
+
+external/imgui/imgui_draw.o: external/imgui/imgui_draw.cpp.o
+.PHONY : external/imgui/imgui_draw.o
+
+# target to build an object file
+external/imgui/imgui_draw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o
+.PHONY : external/imgui/imgui_draw.cpp.o
+
+external/imgui/imgui_draw.i: external/imgui/imgui_draw.cpp.i
+.PHONY : external/imgui/imgui_draw.i
+
+# target to preprocess a source file
+external/imgui/imgui_draw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.i
+.PHONY : external/imgui/imgui_draw.cpp.i
+
+external/imgui/imgui_draw.s: external/imgui/imgui_draw.cpp.s
+.PHONY : external/imgui/imgui_draw.s
+
+# target to generate assembly for a file
+external/imgui/imgui_draw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.s
+.PHONY : external/imgui/imgui_draw.cpp.s
+
+external/imgui/imgui_tables.o: external/imgui/imgui_tables.cpp.o
+.PHONY : external/imgui/imgui_tables.o
+
+# target to build an object file
+external/imgui/imgui_tables.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o
+.PHONY : external/imgui/imgui_tables.cpp.o
+
+external/imgui/imgui_tables.i: external/imgui/imgui_tables.cpp.i
+.PHONY : external/imgui/imgui_tables.i
+
+# target to preprocess a source file
+external/imgui/imgui_tables.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.i
+.PHONY : external/imgui/imgui_tables.cpp.i
+
+external/imgui/imgui_tables.s: external/imgui/imgui_tables.cpp.s
+.PHONY : external/imgui/imgui_tables.s
+
+# target to generate assembly for a file
+external/imgui/imgui_tables.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.s
+.PHONY : external/imgui/imgui_tables.cpp.s
+
+external/imgui/imgui_widgets.o: external/imgui/imgui_widgets.cpp.o
+.PHONY : external/imgui/imgui_widgets.o
+
+# target to build an object file
+external/imgui/imgui_widgets.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o
+.PHONY : external/imgui/imgui_widgets.cpp.o
+
+external/imgui/imgui_widgets.i: external/imgui/imgui_widgets.cpp.i
+.PHONY : external/imgui/imgui_widgets.i
+
+# target to preprocess a source file
+external/imgui/imgui_widgets.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.i
+.PHONY : external/imgui/imgui_widgets.cpp.i
+
+external/imgui/imgui_widgets.s: external/imgui/imgui_widgets.cpp.s
+.PHONY : external/imgui/imgui_widgets.s
+
+# target to generate assembly for a file
+external/imgui/imgui_widgets.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.s
+.PHONY : external/imgui/imgui_widgets.cpp.s
+
 src/engine/renderer.o: src/engine/renderer.cpp.o
 .PHONY : src/engine/renderer.o
 
@@ -177,29 +345,29 @@ src/engine/spaceship.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.s
 .PHONY : src/engine/spaceship.cpp.s
 
-src/engine/world.o: src/engine/world.cpp.o
-.PHONY : src/engine/world.o
+src/engine/toroidal_world.o: src/engine/toroidal_world.cpp.o
+.PHONY : src/engine/toroidal_world.o
 
 # target to build an object file
-src/engine/world.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o
-.PHONY : src/engine/world.cpp.o
+src/engine/toroidal_world.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o
+.PHONY : src/engine/toroidal_world.cpp.o
 
-src/engine/world.i: src/engine/world.cpp.i
-.PHONY : src/engine/world.i
+src/engine/toroidal_world.i: src/engine/toroidal_world.cpp.i
+.PHONY : src/engine/toroidal_world.i
 
 # target to preprocess a source file
-src/engine/world.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.i
-.PHONY : src/engine/world.cpp.i
+src/engine/toroidal_world.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.i
+.PHONY : src/engine/toroidal_world.cpp.i
 
-src/engine/world.s: src/engine/world.cpp.s
-.PHONY : src/engine/world.s
+src/engine/toroidal_world.s: src/engine/toroidal_world.cpp.s
+.PHONY : src/engine/toroidal_world.s
 
 # target to generate assembly for a file
-src/engine/world.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.s
-.PHONY : src/engine/world.cpp.s
+src/engine/toroidal_world.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ToroidEngine.dir/build.make CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.s
+.PHONY : src/engine/toroidal_world.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -234,15 +402,36 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ToroidEngine"
+	@echo "... external/imgui/backends/imgui_impl_glfw.o"
+	@echo "... external/imgui/backends/imgui_impl_glfw.i"
+	@echo "... external/imgui/backends/imgui_impl_glfw.s"
+	@echo "... external/imgui/backends/imgui_impl_opengl3.o"
+	@echo "... external/imgui/backends/imgui_impl_opengl3.i"
+	@echo "... external/imgui/backends/imgui_impl_opengl3.s"
+	@echo "... external/imgui/imgui.o"
+	@echo "... external/imgui/imgui.i"
+	@echo "... external/imgui/imgui.s"
+	@echo "... external/imgui/imgui_demo.o"
+	@echo "... external/imgui/imgui_demo.i"
+	@echo "... external/imgui/imgui_demo.s"
+	@echo "... external/imgui/imgui_draw.o"
+	@echo "... external/imgui/imgui_draw.i"
+	@echo "... external/imgui/imgui_draw.s"
+	@echo "... external/imgui/imgui_tables.o"
+	@echo "... external/imgui/imgui_tables.i"
+	@echo "... external/imgui/imgui_tables.s"
+	@echo "... external/imgui/imgui_widgets.o"
+	@echo "... external/imgui/imgui_widgets.i"
+	@echo "... external/imgui/imgui_widgets.s"
 	@echo "... src/engine/renderer.o"
 	@echo "... src/engine/renderer.i"
 	@echo "... src/engine/renderer.s"
 	@echo "... src/engine/spaceship.o"
 	@echo "... src/engine/spaceship.i"
 	@echo "... src/engine/spaceship.s"
-	@echo "... src/engine/world.o"
-	@echo "... src/engine/world.i"
-	@echo "... src/engine/world.s"
+	@echo "... src/engine/toroidal_world.o"
+	@echo "... src/engine/toroidal_world.i"
+	@echo "... src/engine/toroidal_world.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -1,12 +1,11 @@
 // ===== spaceship.hpp =====
 #pragma once
 #include <glm/glm.hpp>
-#include <GLFW/glfw3.h>
-#include <vector>
-#include <algorithm>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/quaternion.hpp>
-#include "world.hpp"
+#include <vector>
+#include <GLFW/glfw3.h>
+#include "toroidal_world.hpp"
 
 struct Bullet {
     glm::vec3 position;
@@ -21,20 +20,30 @@ struct Particle {
 
 class Spaceship {
 public:
-    glm::vec3 position = glm::vec3(50.0f);
-    glm::vec3 velocity = glm::vec3(0.0f);
-    glm::vec3 acceleration = glm::vec3(0.0f);
-    glm::vec3 forward = glm::vec3(0.0f, 0.0f, -1.0f);
-    glm::mat4 modelMatrix = glm::mat4(1.0f);
-    float damping = 0.98f;
+    glm::vec3 position;
+    glm::vec3 velocity;
+    glm::vec3 forward;
+    glm::vec3 up;
+    glm::mat4 modelMatrix;
+    float acceleration = 5.0f;
+    float yaw, pitch;
 
     std::vector<Bullet> bullets;
     std::vector<glm::vec3> tailPositions;
     std::vector<Particle> particles;
 
-    void update(const World& world, float deltaTime);
-    void processInput(GLFWwindow* window);
+    Spaceship();
+
+    void update(const ToroidalWorld& world, float deltaTime);
+    void processInput(GLFWwindow* window, float deltaTime);
+    void applyRotationFromMouse(float xoffset, float yoffset);
     void shoot();
     void updateBullets(float deltaTime);
-    void applyCameraDirection(const glm::vec3& dir, const glm::vec3& right);
+    void applyCameraDirection(const glm::vec3& front, const glm::vec3& right);
+    glm::vec3 getPosition() const { return position; }
+    glm::vec3 getForward() const { return forward; }
+    glm::vec3 getVelocity() const { return velocity; }
+    float getYaw() const { return yaw; }
+    float getPitch() const { return pitch; }
+
 };

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm
+CXX_INCLUDES = -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm
 
 CXX_FLAGS = -g
 

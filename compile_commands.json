@@ -1,22 +1,57 @@
 [
 {
   "directory": "/home/sapo/code/games/Spacetime",
-  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/renderer.cpp",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/renderer.cpp",
   "file": "/home/sapo/code/games/Spacetime/src/engine/renderer.cpp"
 },
 {
   "directory": "/home/sapo/code/games/Spacetime",
-  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/spaceship.cpp",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/spaceship.cpp",
   "file": "/home/sapo/code/games/Spacetime/src/engine/spaceship.cpp"
 },
 {
   "directory": "/home/sapo/code/games/Spacetime",
-  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/world.cpp",
-  "file": "/home/sapo/code/games/Spacetime/src/engine/world.cpp"
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/toroidal_world.cpp",
+  "file": "/home/sapo/code/games/Spacetime/src/engine/toroidal_world.cpp"
 },
 {
   "directory": "/home/sapo/code/games/Spacetime",
-  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm -std=gnu++17 -o CMakeFiles/ToroidEngine.dir/src/main.cpp.o -c /home/sapo/code/games/Spacetime/src/main.cpp",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/src/main.cpp.o -c /home/sapo/code/games/Spacetime/src/main.cpp",
   "file": "/home/sapo/code/games/Spacetime/src/main.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_glfw.cpp",
+  "file": "/home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_glfw.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_opengl3.cpp",
+  "file": "/home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_opengl3.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui.cpp",
+  "file": "/home/sapo/code/games/Spacetime/external/imgui/imgui.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_demo.cpp",
+  "file": "/home/sapo/code/games/Spacetime/external/imgui/imgui_demo.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_draw.cpp",
+  "file": "/home/sapo/code/games/Spacetime/external/imgui/imgui_draw.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_tables.cpp",
+  "file": "/home/sapo/code/games/Spacetime/external/imgui/imgui_tables.cpp"
+},
+{
+  "directory": "/home/sapo/code/games/Spacetime",
+  "command": "/usr/bin/c++  -I/home/sapo/code/games/Spacetime/src -I/home/sapo/code/games/Spacetime/src/engine -I/home/sapo/code/games/Spacetime/external/imgui -I/home/sapo/code/games/Spacetime/external/imgui/backends -I/usr/include/GL -I/usr/include/GLFW -I/usr/include/glm  -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_widgets.cpp",
+  "file": "/home/sapo/code/games/Spacetime/external/imgui/imgui_widgets.cpp"
 }
 ]

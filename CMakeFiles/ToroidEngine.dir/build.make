@@ -97,19 +97,19 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/src/engine/spaceship.cpp -o CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.s
 
-CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
-CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o: src/engine/world.cpp
-CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o -MF CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o.d -o CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/world.cpp
+CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o: src/engine/toroidal_world.cpp
+CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o -MF CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o.d -o CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o -c /home/sapo/code/games/Spacetime/src/engine/toroidal_world.cpp
 
-CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/src/engine/world.cpp > CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.i
+CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/src/engine/toroidal_world.cpp > CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.i
 
-CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/src/engine/world.cpp -o CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.s
+CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/src/engine/toroidal_world.cpp -o CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.s
 
 CMakeFiles/ToroidEngine.dir/src/main.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
 CMakeFiles/ToroidEngine.dir/src/main.cpp.o: src/main.cpp
@@ -125,26 +125,137 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/src/main.cpp -o CMakeFiles/ToroidEngine.dir/src/main.cpp.s
 
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: external/imgui/backends/imgui_impl_glfw.cpp
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o -MF CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o.d -o CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_glfw.cpp
+
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_glfw.cpp > CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.i
+
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_glfw.cpp -o CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.s
+
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: external/imgui/backends/imgui_impl_opengl3.cpp
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o -MF CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_opengl3.cpp
+
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_opengl3.cpp > CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.i
+
+CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/external/imgui/backends/imgui_impl_opengl3.cpp -o CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.s
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o: external/imgui/imgui.cpp
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o -MF CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o.d -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui.cpp
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/external/imgui/imgui.cpp > CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.i
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/external/imgui/imgui.cpp -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.s
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o: external/imgui/imgui_demo.cpp
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o -MF CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o.d -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_demo.cpp
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/external/imgui/imgui_demo.cpp > CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.i
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/external/imgui/imgui_demo.cpp -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.s
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o: external/imgui/imgui_draw.cpp
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o -MF CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o.d -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_draw.cpp
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/external/imgui/imgui_draw.cpp > CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.i
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/external/imgui/imgui_draw.cpp -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.s
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o: external/imgui/imgui_tables.cpp
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o -MF CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o.d -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_tables.cpp
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/external/imgui/imgui_tables.cpp > CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.i
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/external/imgui/imgui_tables.cpp -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.s
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o: CMakeFiles/ToroidEngine.dir/flags.make
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o: external/imgui/imgui_widgets.cpp
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o: CMakeFiles/ToroidEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o -MF CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o -c /home/sapo/code/games/Spacetime/external/imgui/imgui_widgets.cpp
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sapo/code/games/Spacetime/external/imgui/imgui_widgets.cpp > CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.i
+
+CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sapo/code/games/Spacetime/external/imgui/imgui_widgets.cpp -o CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.s
+
 # Object files for target ToroidEngine
 ToroidEngine_OBJECTS = \
 "CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o" \
 "CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o" \
-"CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o" \
-"CMakeFiles/ToroidEngine.dir/src/main.cpp.o"
+"CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/src/main.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o" \
+"CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o"
 
 # External object files for target ToroidEngine
 ToroidEngine_EXTERNAL_OBJECTS =
 
 ToroidEngine: CMakeFiles/ToroidEngine.dir/src/engine/renderer.cpp.o
 ToroidEngine: CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o
-ToroidEngine: CMakeFiles/ToroidEngine.dir/src/engine/world.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/src/engine/toroidal_world.cpp.o
 ToroidEngine: CMakeFiles/ToroidEngine.dir/src/main.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_glfw.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/external/imgui/imgui.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/external/imgui/imgui_demo.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/external/imgui/imgui_draw.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/external/imgui/imgui_tables.cpp.o
+ToroidEngine: CMakeFiles/ToroidEngine.dir/external/imgui/imgui_widgets.cpp.o
 ToroidEngine: CMakeFiles/ToroidEngine.dir/build.make
 ToroidEngine: /usr/lib/x86_64-linux-gnu/libGL.so
-ToroidEngine: /usr/lib/x86_64-linux-gnu/libGLEW.so
-ToroidEngine: /usr/lib/x86_64-linux-gnu/libglfw.so.3.3
+ToroidEngine: /usr/lib/x86_64-linux-gnu/libGL.so
 ToroidEngine: CMakeFiles/ToroidEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ToroidEngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sapo/code/games/Spacetime/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable ToroidEngine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ToroidEngine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
