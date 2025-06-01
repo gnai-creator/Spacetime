@@ -17,7 +17,14 @@ Asteroid::Asteroid(glm::vec3 pos, glm::vec3 vel, float sz, int gen)
 void Asteroid::update(float deltaTime, const ToroidalWorld& world) {
     position += velocity * deltaTime;
     position = world.wrapToroidalPosition(position);
+
+    // Atualiza a matriz de modelo
+    modelMatrix = glm::translate(glm::mat4(1.0f), position);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
+    
 }
+
+
 
 void Asteroid::render(const glm::mat4& view, const glm::mat4& projection) const {
     Renderer::drawSphere(position, size, view, projection);
@@ -46,3 +53,5 @@ void Asteroid::destroy() {
 bool Asteroid::checkCollision(const glm::vec3& point, float radius) const {
     return !destroyed && glm::distance(position, point) < (size + radius);
 }
+
+

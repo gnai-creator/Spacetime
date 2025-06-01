@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
+#include "asteroid.hpp"
 
 class ToroidalWorld {
 public:
@@ -19,4 +20,13 @@ public:
     float getSizeX() const { return 2.0f * glm::pi<float>() * R; }
     float getSizeZ() const { return 2.0f * glm::pi<float>() * r; }
     glm::vec3 getSize() const; // ← apenas a *declaração*!
+
+    void initAsteroids(int count);
+    void addAsteroid(const Asteroid& a) { asteroids.push_back(a); }
+    const std::vector<Asteroid>& getAsteroids() const { return asteroids; }
+    std::vector<Asteroid>& getAsteroids() { return asteroids; } // se quiser modificar
+
+
+private:
+    std::vector<Asteroid> asteroids;
 };

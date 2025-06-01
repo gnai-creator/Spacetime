@@ -45,47 +45,39 @@ void Spaceship::processInput(GLFWwindow* window, float deltaTime) {
 
 
 }
+
 void Spaceship::update(const ToroidalWorld& world, float deltaTime) {
-    // Atualiza posição com a velocidade e aplica atrito
-    originalPosition = position;  // salvar antes do wrap
+    originalPosition = position;
 
     position += velocity * deltaTime;
     velocity *= 0.99f;
-    constexpr float velocityLimit = 1e5f;
 
+    constexpr float velocityLimit = 1e5f;
     if (!std::isfinite(velocity.x) || 
-    !std::isfinite(velocity.y) || 
-    !std::isfinite(velocity.z) ||
-    glm::length(velocity) > velocityLimit)
+        !std::isfinite(velocity.y) || 
+        !std::isfinite(velocity.z) ||
+        glm::length(velocity) > velocityLimit)
     {
         velocity = glm::normalize(velocity) * velocityLimit;
     }
 
-    // Aplica wrap toroidal na posição
+    // Aqui aplica corretamente o wrap
     position = world.wrapToroidalPosition(position);
     wrappedDebugPos = position;
-    
-    // Atualiza os tiros com wrap também
+
     updateBullets(deltaTime, world);
 
-    // Armazena a trilha da nave
     tailPositions.push_back(position);
     if (tailPositions.size() > 30)
         tailPositions.erase(tailPositions.begin());
 
-    // Garante que o vetor forward esteja normalizado
     forward = glm::normalize(forward);
 
-    // Atualiza matriz do modelo (posição e orientação)
     modelMatrix = glm::translate(glm::mat4(1.0f), position);
     modelMatrix *= glm::mat4_cast(glm::quatLookAt(forward, glm::vec3(0.0f, 1.0f, 0.0f)));
     modelMatrix *= glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1, 0, 0));
-
-    // Exibir informações no HUD (se existir ponteiro)
-   
-
-
 }
+
 
 
 void Spaceship::shoot() {

@@ -1,9 +1,10 @@
 // ===== asteroid.hpp =====
 
-#pragma once
+#ifndef ASTEROID_HPP
+#define ASTEROID_HPP
 #include <glm/glm.hpp>
 #include <vector>
-#include "toroidal_world.hpp" // Certifique-se de incluir isso se ToroidalWorld for usado
+class ToroidalWorld;
 
 class Asteroid {
 public:
@@ -21,10 +22,15 @@ public:
     void destroy();
     bool checkCollision(const glm::vec3& point, float radius) const;
 
+    float getScale() const { return scale; }
+
 private:
     glm::vec3 position;
     glm::vec3 velocity;
     float size;
     int generation;
     bool destroyed = false;
+    float scale = 1.0f;
+    glm::mat4 modelMatrix;
 };
+#endif // ASTEROID_HPP

@@ -7,7 +7,12 @@
 #include <iostream>
 #include <vector>
 
-static GLuint shaderProgram;
+
+unsigned int Renderer::shaderProgram = 0;
+GLuint Renderer::asteroidVAO = 0;
+GLuint Renderer::asteroidVBO = 0;
+GLuint Renderer::asteroidEBO = 0;
+GLsizei Renderer::asteroidIndexCount = 0;
 
 bool Renderer::init() {
     glewExperimental = GL_TRUE;
@@ -20,6 +25,8 @@ bool Renderer::init() {
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
     shaderProgram = loadShaders();
+    loadAsteroidMesh();  // certifique-se que o VAO será inicializado
+
     return true;
 }
 
@@ -139,6 +146,60 @@ void Renderer::drawSphere(const glm::vec3& position, float radius, const glm::ma
     glDeleteVertexArrays(1, &vao);
 }
 
+void Renderer::loadAsteroidMesh() {
+    // Exemplo básico de dados — substitua por sua malha real
+    std::vector<glm::vec3> vertices = {
+        { -0.5f, -0.5f, 0.0f },
+        {  0.5f, -0.5f, 0.0f },
+        {  0.0f,  0.5f, 0.0f }
+    };
+    std::vector<GLuint> indices = { 0, 1, 2 };
+
+    asteroidIndexCount = indices.size();
+
+    glGenVertexArrays(1, &asteroidVAO);
+    glGenBuffers(1, &asteroidVBO);
+    glGenBuffers(1, &asteroidEBO);
+
+    glBindVertexArray(asteroidVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, asteroidVBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, asteroidEBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), indices.data(), GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindVertexArray(0);
+}
+
+
+// Renderer (trecho atualizado no draw)
+void Renderer::drawAsteroids(const ToroidalWorld& world, const std::vector<Asteroid>& asteroids) {
+    GLint modelLoc = glGetUniformLocation(shaderProgram, "model");
+
+    for (const auto& asteroid : asteroids) {
+        if (asteroid.isDestroyed()) continue;
+
+        for (int i = 0; i < 9; ++i) {
+            float thetaOffset = static_cast<float>(i % 3 - 1) * glm::two_pi<float>();
+            float phiOffset   = static_cast<float>(i / 3 - 1) * glm::two_pi<float>();
+
+            glm::vec3 wrappedPos = world.wrapToroidalPositionWithOffset(asteroid.getPosition(), thetaOffset, phiOffset);
+
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), wrappedPos);
+            model = glm::scale(model, glm::vec3(asteroid.getScale()));
+
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glBindVertexArray(asteroidVAO); // este VAO deve estar inicializado antes
+            glDrawElements(GL_TRIANGLES, asteroidIndexCount, GL_UNSIGNED_INT, 0);
+        }
+    }
+}
+
+
 void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(shaderProgram);
@@ -179,6 +240,22 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
+
+    for (const auto& asteroid : world.getAsteroids()) {
+        for (int i = 0; i < 9; ++i) {
+            float thetaOffset = static_cast<float>(i % 3 - 1) * glm::two_pi<float>();
+            float phiOffset = static_cast<float>(i / 3 - 1) * glm::two_pi<float>();
+
+            glm::vec3 pos = world.wrapToroidalPositionWithOffset(asteroid.getPosition(), thetaOffset, phiOffset);
+
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
+            // Aplique outras transformações (rotação, escala, etc) conforme necessário
+
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glDrawArrays(GL_TRIANGLES, 0, 3); // ou drawMesh se for diferente
+        }
+    }
+
 
     for (const auto& bullet : ship.getBullets()) {
         if (!bullet.active) continue;

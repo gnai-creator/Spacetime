@@ -38,7 +38,10 @@ public:
     std::vector<Bullet>& getBullets() { return bullets; }
     const std::vector<glm::vec3>& getTailPositions() const;
     const std::vector<glm::vec3>& getParticles() const;
-    glm::vec3 setPosition(glm::vec3 pos) { position = pos; }
+    glm::vec3 setPosition(glm::vec3 pos) {
+        position = pos;
+        return position;
+    }
     glm::vec3 getWrappedDebugPos() const { return wrappedDebugPos; }
     void setHUD(HUD* hud) { hudPtr = hud; }
 

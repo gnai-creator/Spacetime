@@ -268,6 +268,7 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: \
  /usr/include/c++/11/bits/range_access.h \
  /usr/include/c++/11/bits/vector.tcc \
  /home/sapo/code/games/Spacetime/src/engine/toroidal_world.hpp \
+ /home/sapo/code/games/Spacetime/src/engine/asteroid.hpp \
  /home/sapo/code/games/Spacetime/src/engine/hud.hpp \
  /usr/include/c++/11/string /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/char_traits.h \
