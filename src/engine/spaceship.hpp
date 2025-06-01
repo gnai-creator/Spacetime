@@ -5,6 +5,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <GLFW/glfw3.h>
 #include <vector>
+#include "toroid_utils.hpp"
 #include "toroidal_world.hpp"
 #include "hud.hpp"
 
@@ -21,13 +22,16 @@ public:
 
     void processInput(GLFWwindow* window, float deltaTime);
     void update(const ToroidalWorld& world, float deltaTime);
+    void update_position(float deltaTime, const ToroidalWorld& world, const glm::vec3& cameraPos, const glm::vec3& cameraFront, float distanceFromCamera);
     void applyRotationFromMouse(float xoffset, float yoffset);
     void applyCameraDirection(const glm::vec3& front, const glm::vec3& right);
     void updateBullets(float deltaTime, const ToroidalWorld& world);
     glm::vec3 getOriginalPosition() const { return originalPosition; }
-
+    void shoot(const glm::vec3& cameraPos, const glm::vec3& cameraFront, float distanceFromCamera);
+    void renderBullets(GLuint modelLoc, const glm::vec3& cameraPos) const;
     const glm::vec3& getPosition() const;
     const glm::vec3& getForward() const;
+    void setForward(const glm::vec3& newForward);
     const glm::vec3& getVelocity() const { return velocity; }
     float getYaw() const { return yaw; }
     float getPitch() const { return pitch; }
@@ -62,6 +66,5 @@ private:
     std::vector<Bullet> bullets;
     std::vector<glm::vec3> tailPositions;
 
-    void shoot();
     void updateBullets(float deltaTime);
 };

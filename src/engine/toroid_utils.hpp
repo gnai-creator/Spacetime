@@ -16,3 +16,7 @@ inline glm::vec2 cartesianToToroidal(const glm::vec3& pos, float majorRadius, fl
     float theta = atan2(pos.z, glm::length(glm::vec2(pos.x, pos.y)) - majorRadius);
     return glm::vec2(theta, phi);
 }
+
+inline float toroidal_wrap(float value, float max_value) {
+    return fmodf((fmodf(value, max_value) + max_value), max_value);
+}

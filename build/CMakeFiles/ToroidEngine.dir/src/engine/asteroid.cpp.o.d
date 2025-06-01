@@ -270,6 +270,7 @@ CMakeFiles/ToroidEngine.dir/src/engine/asteroid.cpp.o: \
  /usr/include/glm/detail/setup.hpp /usr/include/glm/gtc/epsilon.inl \
  /usr/include/GLFW/glfw3.h /usr/include/GL/gl.h /usr/include/GL/glext.h \
  /usr/include/KHR/khrplatform.h \
+ /home/sapo/code/games/Spacetime/src/engine/toroid_utils.hpp \
  /home/sapo/code/games/Spacetime/src/engine/hud.hpp \
  /usr/include/c++/11/string /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/char_traits.h \

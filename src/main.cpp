@@ -25,19 +25,29 @@
 GLFWwindow* window;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
+const unsigned int SCR_WIDTH = 1280;
+const unsigned int SCR_HEIGHT = 720;
 
-float yaw = -90.0f, pitch = 0.0f;
 float fov = 115.0f;
-double lastX = 400, lastY = 300;
+float yaw = -90.0f;    // Inicie olhando para o eixo Z-
+float pitch = 0.0f;    // Sem inclinação
+float lastX;
+float lastY;
+glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f, 3.0f); // posição inicial da câmera
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f); // para onde olha (atualizado pelo mouse-look)
+glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
+float cameraSpeed     = 3.0f;
 bool firstMouse = true;
+
+
 
 float radius = 5.0f;
 ToroidalWorld world;
 std::vector<Asteroid> asteroids;
 float asteroidSpawnTimer = 0.0f;
-
-HUD hud;
 Spaceship ship;
+glm::vec3 cameraTarget = ship.getPosition() + ship.getForward() * 2.0f;
+HUD hud;
 
 
 void spawnRandomAsteroid() {
@@ -63,6 +73,10 @@ void processInput(GLFWwindow* window, float deltaTime) {
         glfwSetWindowShouldClose(window, true);
 
     ship.processInput(window, deltaTime);
+    
+    // Câmera segue a nave, mantendo uma distância fixa atrás
+    cameraPos = ship.getPosition() - ship.getForward() * 3.0f; // 3 unidades atrás
+    cameraFront = ship.getForward(); // Mesma direção que a nave
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
@@ -71,20 +85,41 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
     if (fov > 90.0f) fov = 90.0f;
 }
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
-    if (firstMouse) {
+// Callback para mouse
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (firstMouse)
+    {
         lastX = xpos;
         lastY = ypos;
         firstMouse = false;
     }
 
     float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos;
+    float yoffset = lastY - ypos; // Y invertido
+
     lastX = xpos;
     lastY = ypos;
 
-    ship.applyRotationFromMouse(xoffset, yoffset);
+    float sensitivity = 0.1f;
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    yaw   += xoffset;
+    pitch += yoffset;
+
+    // Limita o pitch para não virar a câmera do avesso
+    if (pitch > 89.0f)  pitch = 89.0f;
+    if (pitch < -89.0f) pitch = -89.0f;
+
+   glm::vec3 front;
+    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians(pitch));
+    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    cameraFront = glm::normalize(front);
+    ship.setForward(cameraFront);  // Isso deve atualizar a direção da nave
 }
+
 
 void checarColisoes(std::vector<Bullet>& bullets, std::vector<Asteroid>& asteroids) {
     for (auto& asteroid : asteroids) {
@@ -114,8 +149,8 @@ int main() {
     srand(time(0));
 
     ship.setHUD(&hud);  // função que você criará no próximo passo
-    float x = world.getSizeX();
-    ship.setPosition(glm::vec3(100.0f, 0.0f, 0.0f));  // Um ponto longe do centro
+    // float x = world.getSizeX();
+    // ship.setPosition(glm::vec3(100.0f, 0.0f, 0.0f));  // Um ponto longe do centro
 
     if (!glfwInit()) return -1;
 
@@ -125,6 +160,8 @@ int main() {
     int screenHeight = mode->height;
 
     window = glfwCreateWindow(screenWidth, screenHeight, "Toroid Engine", monitor, NULL);
+    lastX = screenWidth / 2.0f;
+    lastY = screenHeight / 2.0f;
     if (!window) return -1;
 
     glfwMakeContextCurrent(window);
@@ -143,7 +180,15 @@ int main() {
     ImGui_ImplOpenGL3_Init("#version 330");
 
     if (!Renderer::init()) return -1;
-
+    // No início do main(), após criar a nave:
+    // Posição inicial
+    ship.setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+    glm::vec3 initialForward(0.0f, 0.0f, -1.0f);
+    ship.setForward(initialForward);
+    cameraPos = ship.getPosition() - initialForward * 3.0f;
+    cameraFront = initialForward;
+    // Renderer::initBullets();
+    // Renderer::initShip();
     for (int i = 0; i < 5; ++i) {
         spawnRandomAsteroid();
     }
@@ -154,25 +199,11 @@ int main() {
         lastFrame = currentFrame;
         asteroidSpawnTimer += deltaTime;
 
-        processInput(window, deltaTime);
+       
         world.update();
         
 
-        std::vector<Bullet>& bullets = ship.getBullets();
-        for (auto& asteroid : asteroids) {
-            if (asteroid.isDestroyed()) continue;
-            for (auto& bullet : bullets) {
-                if (!bullet.active) continue;
-                float dist = glm::distance(asteroid.getPosition(), bullet.position);
-                if (dist < asteroid.getSize()) {
-                    asteroid.destroy();
-                    bullet.active = false;
-                    break;
-                }
-            }
-        }
-        bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const Bullet& b) { return !b.active; }), bullets.end());
-
+     
         std::vector<Asteroid> updatedAsteroids;
         for (auto& asteroid : asteroids) {
             asteroid.update(deltaTime, world);
@@ -196,34 +227,83 @@ int main() {
             asteroidSpawnTimer = 0.0f;
         }
 
-        glm::vec3 cameraOffset = -ship.getForward() * radius + glm::vec3(0.0f, 1.5f, 0.0f);
-        glm::vec3 cameraPos = ship.getPosition() + cameraOffset;
-        glm::vec3 cameraTarget = ship.getPosition() + ship.getForward() * 2.0f;
+        
+        processInput(window, deltaTime);
+      
+        // Declaração inicial:
 
-        glm::mat4 view = glm::lookAt(cameraPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
+
+        // // No loop principal:
+        // if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        //     cameraPos += cameraFront * cameraSpeed * deltaTime;
+        // if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        //     cameraPos -= cameraFront * cameraSpeed * deltaTime;
+        // if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        //     cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed * deltaTime;
+        // if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        //     cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed * deltaTime;
+
+        // O mouse-look já deve atualizar cameraFront
+
+        // Atualize a view:
+        glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+
+        // Exemplo: posiciona a nave SEMPRE na frente da câmera
+        float distanceFromCamera = 2.0f;
+        // ship.position = cameraPos + cameraFront * distanceFromCamera;
+
+// Bullets também usam cameraPos e cameraFront ao nascer!
+
+        // glm::vec3 pos = cameraPos + cameraFront * distanceFromCamera;
+        // ship.setPosition(pos);
+
+        ship.updateBullets(deltaTime, world );
+        std::vector<Bullet>& bullets = ship.getBullets();
+        for (auto& asteroid : asteroids) {
+            if (asteroid.isDestroyed()) continue;
+            for (auto& bullet : bullets) {
+                if (!bullet.active) continue;
+                float dist = glm::distance(asteroid.getPosition(), bullet.position);
+                if (dist < asteroid.getSize()) {
+                    asteroid.destroy();
+                    bullet.active = false;
+                    break;
+                }
+            }
+        }
+        bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const Bullet& b) { return !b.active; }), bullets.end());
+
+
 
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);
-        glm::mat4 projection = glm::perspective(glm::radians(fov), (float)width / (float)height, 0.1f, 100.0f);
-
+       // Ajuste o near plane para 0.01f para objetos próximos não desaparecerem
+        glm::mat4 projection = glm::perspective(glm::radians(fov), (float)width / (float)height, 0.01f, 100.0f);
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
         ship.update(world, deltaTime);
         hud.showDebugInfo(
-            ship.getOriginalPosition(),                      // precisa adicionar esse método
+            cameraPos,                      // precisa adicionar esse método
             ship.getWrappedDebugPos(),
-            ship.getVelocity(),
+            cameraPos,
             world.cartesianToToroidal(ship.getWrappedDebugPos()),
-            world.getSizeX(), world.getSizeZ()
+            world.getSizeX(), world.getSizeY()
         );
 
-
-        Renderer::draw(world, ship, view, projection);
+        // No loop principal, antes de Renderer::draw()
+        std::cout << "Ship position: " << ship.getPosition().x << ", " 
+                << ship.getPosition().y << ", " << ship.getPosition().z << std::endl;
+        std::cout << "Ship forward: " << ship.getForward().x << ", "
+                << ship.getForward().y << ", " << ship.getForward().z << std::endl;
+        Renderer::draw(world, ship, view, projection, cameraPos);
         for (auto& asteroid : asteroids) {
             asteroid.render(view, projection);
         }
+        // ... outros desenhos ...
+
+       
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

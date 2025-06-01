@@ -7,6 +7,8 @@
 #include <glm/gtx/norm.hpp>
 #include <glm/gtx/vector_angle.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "toroid_utils.hpp"
+#include "toroidal_world.hpp"
 
 Asteroid::Asteroid()
     : position(0.0f), velocity(0.0f), size(1.0f), generation(0), destroyed(false) {}
@@ -15,13 +17,14 @@ Asteroid::Asteroid(glm::vec3 pos, glm::vec3 vel, float sz, int gen)
     : position(pos), velocity(vel), size(sz), generation(gen), destroyed(false) {}
 
 void Asteroid::update(float deltaTime, const ToroidalWorld& world) {
-    position += velocity * deltaTime;
-    position = world.wrapToroidalPosition(position);
-
-    // Atualiza a matriz de modelo
-    modelMatrix = glm::translate(glm::mat4(1.0f), position);
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
+    update_position(deltaTime, world);
     
+}
+
+void Asteroid::update_position(float deltaTime, const ToroidalWorld& world) {
+    position += velocity * deltaTime;
+    position.x = toroidal_wrap(position.x, world.getSizeX());
+    position.y = toroidal_wrap(position.y, world.getSizeY());
 }
 
 

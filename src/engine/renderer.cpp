@@ -13,7 +13,10 @@ GLuint Renderer::asteroidVAO = 0;
 GLuint Renderer::asteroidVBO = 0;
 GLuint Renderer::asteroidEBO = 0;
 GLsizei Renderer::asteroidIndexCount = 0;
-
+GLuint Renderer::vaoBullet = 0;
+GLuint Renderer::vboBullet = 0;
+GLuint Renderer::shipVAO = 0;
+GLuint Renderer::shipVBO = 0;
 bool Renderer::init() {
     glewExperimental = GL_TRUE;
     GLenum glewStatus = glewInit();
@@ -21,16 +24,53 @@ bool Renderer::init() {
         std::cerr << "[ERROR] glewInit() failed: " << glewGetErrorString(glewStatus) << std::endl;
         return false;
     }
-
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
     shaderProgram = loadShaders();
     loadAsteroidMesh();  // certifique-se que o VAO será inicializado
-
+    initBullets();
+    initShip();
     return true;
 }
 
+void Renderer::initBullets() {
+    float triangle[] = {
+        -1.0f, -1.0f, 0.0f,
+         1.0f, -1.0f, 0.0f,
+         0.0f,  1.4f, 0.0f
+    };
+    glGenVertexArrays(1, &vaoBullet);
+    glGenBuffers(1, &vboBullet);
+
+    glBindVertexArray(vaoBullet);
+    glBindBuffer(GL_ARRAY_BUFFER, vboBullet);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(0);
+}
+
+void Renderer::initShip() {
+    float triangle[] = {
+        -1.0f, -1.0f, 0.0f,
+        1.0f, -1.0f, 0.0f,
+        0.0f,  1.4f, 0.0f
+    };
+
+    glGenVertexArrays(1, &Renderer::shipVAO);
+    glGenBuffers(1, &Renderer::shipVBO);
+
+    glBindVertexArray(Renderer::shipVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, Renderer::shipVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(0);
+}
+
+
 GLuint Renderer::loadShaders() {
+    // Vertex Shader
     const char* vertexShaderSource = R"(
         #version 330 core
         layout (location = 0) in vec3 aPos;
@@ -44,27 +84,56 @@ GLuint Renderer::loadShaders() {
         }
     )";
 
+    // Fragment Shader
     const char* fragmentShaderSource = R"(
         #version 330 core
         out vec4 FragColor;
+        
         void main() {
-            FragColor = vec4(0.3, 0.8, 1.0, 1.0);
+            FragColor = vec4(0.3, 0.8, 1.0, 1.0); // Cor azul esverdeada
         }
     )";
 
+    // Criar e compilar vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
     glCompileShader(vertexShader);
+    
+    // Verificar erros de compilação do vertex shader
+    GLint success;
+    GLchar infoLog[512];
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+        std::cerr << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
 
+    // Criar e compilar fragment shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
     glCompileShader(fragmentShader);
+    
+    // Verificar erros de compilação do fragment shader
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
+        std::cerr << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
 
+    // Criar programa shader
     GLuint program = glCreateProgram();
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
     glLinkProgram(program);
-
+    
+    // Verificar erros de linking
+    glGetProgramiv(program, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(program, 512, nullptr, infoLog);
+        std::cerr << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    
+    // Deletar os shaders após o linking
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
@@ -200,33 +269,19 @@ void Renderer::drawAsteroids(const ToroidalWorld& world, const std::vector<Aster
 }
 
 
-void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos) {
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(shaderProgram);
 
-    float triangle[] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.7f, 0.0f
-    };
-
-    GLuint VBO, VAO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
     GLint modelLoc = glGetUniformLocation(shaderProgram, "model");
-    GLint viewLoc  = glGetUniformLocation(shaderProgram, "view");
-    GLint projLoc  = glGetUniformLocation(shaderProgram, "projection");
+    GLint viewLoc = glGetUniformLocation(shaderProgram, "view");
+    GLint projLoc = glGetUniformLocation(shaderProgram, "projection");
 
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
+    // Desenha a nave usando o VAO permanente
+    glBindVertexArray(shipVAO);
     for (int i = 0; i < 9; ++i) {
         float thetaOffset = static_cast<float>(i % 3 - 1) * glm::two_pi<float>();
         float phiOffset = static_cast<float>(i / 3 - 1) * glm::two_pi<float>();
@@ -234,12 +289,15 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
         glm::vec3 pos = world.wrapToroidalPositionWithOffset(ship.getPosition(), thetaOffset, phiOffset);
 
         glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
+        // Corrige a orientação (rotação primeiro, depois translação)
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1, 0, 0)); // Ajuste para modelo apontar para frente
         model *= glm::mat4_cast(glm::quatLookAt(ship.getForward(), glm::vec3(0.0f, 1.0f, 0.0f)));
-        model *= glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1, 0, 0));
+        model = glm::scale(model, glm::vec3(0.5f));
 
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
+    glBindVertexArray(0);
 
     for (const auto& asteroid : world.getAsteroids()) {
         for (int i = 0; i < 9; ++i) {
@@ -257,13 +315,12 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
     }
 
 
-    for (const auto& bullet : ship.getBullets()) {
-        if (!bullet.active) continue;
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), bullet.position);
-        model = glm::scale(model, glm::vec3(0.05f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-    }
+    // Ative o VAO do bullet ANTES de desenhar os bullets
+    glBindVertexArray(Renderer::vaoBullet);  // (se vaoBullet for estático) ou this->vaoBullet
+    ship.renderBullets(modelLoc, cameraPos);
+    glBindVertexArray(0);
+
+
 
     if (!ship.getTailPositions().empty()) {
         std::vector<float> tailVertices;
@@ -319,6 +376,4 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-    glDeleteBuffers(1, &VBO);
-    glDeleteVertexArrays(1, &VAO);
 }

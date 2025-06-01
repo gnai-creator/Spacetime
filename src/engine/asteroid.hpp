@@ -12,6 +12,7 @@ public:
     Asteroid(glm::vec3 pos, glm::vec3 vel, float sz, int gen);
 
     void update(float deltaTime, const ToroidalWorld& world);
+    void update_position(float deltaTime, const ToroidalWorld& world);
     void render(const glm::mat4& view, const glm::mat4& projection) const;
 
     bool isDestroyed() const { return destroyed; }

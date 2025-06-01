@@ -316,6 +316,7 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
+ /home/sapo/code/games/Spacetime/src/engine/toroid_utils.hpp \
  /home/sapo/code/games/Spacetime/src/engine/toroidal_world.hpp \
  /home/sapo/code/games/Spacetime/src/engine/asteroid.hpp \
  /home/sapo/code/games/Spacetime/src/engine/renderer.hpp \

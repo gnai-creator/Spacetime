@@ -1,13 +1,17 @@
 // ===== spaceship.cpp =====
-#include "spaceship.hpp"
+#include <GL/glew.h> // Necessário para glUniformMatrix4fv
+#include <glm/gtc/type_ptr.hpp> // Necessário para glm::value_ptr
 #include <glm/gtc/constants.hpp>
+#include "spaceship.hpp"
 #include <algorithm>
 #include <cmath>  // necessário para std::isfinite
+#include <iostream> // necessário para std::cout
+
 
 Spaceship::Spaceship()
-    : position(50.0f, 50.0f, 50.0f), velocity(1.0f), acceleration(1.78f),
+    : position(0.0f, 0.0f, 0.0f), velocity(0.0f), acceleration(1.0f),
       forward(0.0f, 0.0f, -1.0f), up(0.0f, 1.0f, 0.0f), yaw(-90.0f), pitch(0.0f),
-      modelMatrix(1.0f), thrust(1.78f) {}
+      modelMatrix(1.0f), thrust(0.0f) {}  // Note thrust iniciando em 0
 
 void Spaceship::applyRotationFromMouse(float xoffset, float yoffset) {
     float sensitivity = 0.1f;
@@ -23,70 +27,53 @@ void Spaceship::applyRotationFromMouse(float xoffset, float yoffset) {
     dir.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     forward = glm::normalize(dir);
 }
-
 void Spaceship::processInput(GLFWwindow* window, float deltaTime) {
-    thrust += 4.0f * acceleration / glm::pi<float>();
+    thrust = 0.0f; // Reset a cada frame
 
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        velocity += forward * thrust * deltaTime;
-
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        velocity -= forward * thrust * deltaTime;
-
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        velocity -= glm::normalize(glm::cross(forward, glm::vec3(0,1,0))) * thrust * deltaTime;
-
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        velocity += glm::normalize(glm::cross(forward, glm::vec3(0,1,0))) * thrust * deltaTime;
-
-    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
-        shoot();
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        thrust = 2.0f;
+        velocity = forward * thrust;
+        position += velocity * deltaTime;
+    }
     
-
-
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+        shoot(position + forward * 0.5f, forward, 0.1f); // Dispara um pouco à frente da nave
+    }
 }
+
+// Corrigindo update_position para manter a spaceship sempre na frente da câmera (sem usar velocity)
+void Spaceship::update_position(float deltaTime, const ToroidalWorld& world, const glm::vec3& cameraPos, const glm::vec3& cameraFront, float distanceFromCamera) {
+    // Ignora velocity, prende a nave sempre na frente da câmera
+    setPosition(cameraPos + cameraFront * distanceFromCamera);
+
+    
+    // Caso você queira manter efeito toroide:
+    position.x = toroidal_wrap(position.x, world.getSizeX());
+    position.y = toroidal_wrap(position.y, world.getSizeY());
+}
+
+
 
 void Spaceship::update(const ToroidalWorld& world, float deltaTime) {
-    originalPosition = position;
+    // update_position(deltaTime, world);
 
-    position += velocity * deltaTime;
-    velocity *= 0.99f;
-
-    constexpr float velocityLimit = 1e5f;
-    if (!std::isfinite(velocity.x) || 
-        !std::isfinite(velocity.y) || 
-        !std::isfinite(velocity.z) ||
-        glm::length(velocity) > velocityLimit)
-    {
-        velocity = glm::normalize(velocity) * velocityLimit;
-    }
-
-    // Aqui aplica corretamente o wrap
-    position = world.wrapToroidalPosition(position);
-    wrappedDebugPos = position;
-
-    updateBullets(deltaTime, world);
-
-    tailPositions.push_back(position);
-    if (tailPositions.size() > 30)
-        tailPositions.erase(tailPositions.begin());
-
-    forward = glm::normalize(forward);
-
-    modelMatrix = glm::translate(glm::mat4(1.0f), position);
-    modelMatrix *= glm::mat4_cast(glm::quatLookAt(forward, glm::vec3(0.0f, 1.0f, 0.0f)));
-    modelMatrix *= glm::rotate(glm::mat4(1.0f), glm::radians(-90.0f), glm::vec3(1, 0, 0));
 }
 
 
 
-void Spaceship::shoot() {
+// Ajustando os tiros (bullets) para seguir sempre a direção da câmera (forward atualizado)
+
+void Spaceship::shoot(const glm::vec3& cameraPos, const glm::vec3& cameraFront, float distanceFromCamera) {
     Bullet b;
-    b.position = position;
-    b.velocity = velocity + forward * 20.0f;
+    b.position = cameraPos + cameraFront * distanceFromCamera;
+    b.velocity = cameraFront * 20.0f;
     b.lifetime = 5.0f;
+    b.active = true;
     bullets.push_back(b);
 }
+
+
+
 
 void Spaceship::updateBullets(float deltaTime, const ToroidalWorld& world) {
     for (auto& bullet : bullets) {
@@ -95,10 +82,25 @@ void Spaceship::updateBullets(float deltaTime, const ToroidalWorld& world) {
         bullet.lifetime -= deltaTime;
         if (bullet.lifetime <= 0.0f) bullet.active = false;
     }
-
-    bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
-        [](const Bullet& b) { return !b.active; }), bullets.end());
+    bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const Bullet& b) { return !b.active; }), bullets.end());
 }
+
+
+
+void Spaceship::renderBullets(GLuint modelLoc, const glm::vec3& cameraPos) const {
+    for (const auto& bullet : bullets) {
+        if (!bullet.active) continue;
+        glm::vec3 relPos = bullet.position - cameraPos;
+        std::cout << "relPos: " << relPos.x << ", " << relPos.y << ", " << relPos.z << std::endl;
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), relPos);
+        model = glm::scale(model, glm::vec3(0.05f)); // se quiser pequeno
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+    }
+}
+
+
+
 
 
 
@@ -131,4 +133,7 @@ const std::vector<glm::vec3>& Spaceship::getTailPositions() const {
 }
 const std::vector<glm::vec3>& Spaceship::getParticles() const {
     return particles;
+}
+void Spaceship::setForward(const glm::vec3& newForward) {
+    forward = glm::normalize(newForward);
 }

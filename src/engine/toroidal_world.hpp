@@ -5,10 +5,10 @@
 
 class ToroidalWorld {
 public:
-    float R = 20.0f;//1e5f;
-    float r = 10.0f;
+    float R = 30.0f;
+    float r = 15.0f;
     float global_time = 0.0f;
-
+   
     void update();
     glm::vec2 cartesianToToroidal(const glm::vec3& pos) const;
     glm::vec3 toroidalToCartesian(float theta, float phi) const;
@@ -18,7 +18,7 @@ public:
     float computeLocalTime(const glm::vec3& pos) const;
 
     float getSizeX() const { return 2.0f * glm::pi<float>() * R; }
-    float getSizeZ() const { return 2.0f * glm::pi<float>() * r; }
+    float getSizeY() const { return 2.0f * glm::pi<float>() * r; }
     glm::vec3 getSize() const; // ← apenas a *declaração*!
 
     void initAsteroids(int count);
