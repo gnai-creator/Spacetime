@@ -268,112 +268,47 @@ void Renderer::drawAsteroids(const ToroidalWorld& world, const std::vector<Aster
     }
 }
 
-
-void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos) {
-   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, const glm::vec3& cameraTarget, const glm::vec3& cameraForward,const glm::vec3& cameraUp) {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(shaderProgram);
 
+    // Configurações comuns
     GLint modelLoc = glGetUniformLocation(shaderProgram, "model");
     GLint viewLoc = glGetUniformLocation(shaderProgram, "view");
     GLint projLoc = glGetUniformLocation(shaderProgram, "projection");
-
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-    // Desenha a nave usando o VAO permanente
+    // Desenha a nave (triângulo) - usando coordenadas relativas à nave
     glBindVertexArray(shipVAO);
-    for (int i = 0; i < 9; ++i) {
-        float thetaOffset = static_cast<float>(i % 3 - 1) * glm::two_pi<float>();
-        float phiOffset = static_cast<float>(i / 3 - 1) * glm::two_pi<float>();
 
-        glm::vec3 pos = world.wrapToroidalPositionWithOffset(ship.getPosition(), thetaOffset, phiOffset);
+    // Posição fixa na origem do espaço da câmera (não no mundo!)
+    // Posição da nave no mundo
+    glm::mat4 shipModel = glm::translate(glm::mat4(1.0f), ship.getPosition());
 
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
-        // Corrige a orientação (rotação primeiro, depois translação)
-        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1, 0, 0)); // Ajuste para modelo apontar para frente
-        model *= glm::mat4_cast(glm::quatLookAt(ship.getForward(), glm::vec3(0.0f, 1.0f, 0.0f)));
-        model = glm::scale(model, glm::vec3(0.5f));
+    // Deite a nave se precisar, só para fins visuais
+    shipModel = glm::rotate(shipModel, glm::radians(80.0f), glm::vec3(1, 0, 0));
 
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-    }
-    glBindVertexArray(0);
+    // Escale a nave
+    shipModel = glm::scale(shipModel, glm::vec3(0.5f));
 
-    for (const auto& asteroid : world.getAsteroids()) {
-        for (int i = 0; i < 9; ++i) {
-            float thetaOffset = static_cast<float>(i % 3 - 1) * glm::two_pi<float>();
-            float phiOffset = static_cast<float>(i / 3 - 1) * glm::two_pi<float>();
+    // NÃO multiplique por nenhuma rotação da câmera!
+    // NÃO use glm::quatLookAt
+    // NÃO use glm::inverse(glm::mat4(glm::mat3(view)))
 
-            glm::vec3 pos = world.wrapToroidalPositionWithOffset(asteroid.getPosition(), thetaOffset, phiOffset);
-
-            glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
-            // Aplique outras transformações (rotação, escala, etc) conforme necessário
-
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-            glDrawArrays(GL_TRIANGLES, 0, 3); // ou drawMesh se for diferente
-        }
-    }
+    // Envie para o shader
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(shipModel));
+    glDrawArrays(GL_TRIANGLES, 0, 3);
 
 
-    // Ative o VAO do bullet ANTES de desenhar os bullets
-    glBindVertexArray(Renderer::vaoBullet);  // (se vaoBullet for estático) ou this->vaoBullet
+
+
+    // Desenha a esfera de debug - mesma posição da nave
+    // No renderer.cpp, após desenhar a nave:
+    drawSphere(ship.getGunPosition(), 0.1f, view, projection);
+
+    // Desenha os bullets - já estão com posições corretas no world space
+    glBindVertexArray(vaoBullet);
     ship.renderBullets(modelLoc, cameraPos);
-    glBindVertexArray(0);
-
-
-
-    if (!ship.getTailPositions().empty()) {
-        std::vector<float> tailVertices;
-        for (const auto& p : ship.getTailPositions()) {
-            tailVertices.push_back(p.x);
-            tailVertices.push_back(p.y);
-            tailVertices.push_back(p.z);
-        }
-
-        GLuint tailVBO;
-        glGenBuffers(1, &tailVBO);
-        glBindBuffer(GL_ARRAY_BUFFER, tailVBO);
-        glBufferData(GL_ARRAY_BUFFER, tailVertices.size() * sizeof(float), tailVertices.data(), GL_STATIC_DRAW);
-
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-        glDrawArrays(GL_LINE_STRIP, 0, ship.getTailPositions().size());
-
-        glDisableVertexAttribArray(0);
-        glDeleteBuffers(1, &tailVBO);
-    }
-
-    if (!ship.getParticles().empty()) {
-        std::vector<float> particleVertices;
-        for (const auto& p : ship.getParticles()) {
-            particleVertices.push_back(p.x);
-            particleVertices.push_back(p.y);
-            particleVertices.push_back(p.z);
-        }
-
-        GLuint particleVBO, particleVAO;
-        glGenVertexArrays(1, &particleVAO);
-        glGenBuffers(1, &particleVBO);
-
-        glBindVertexArray(particleVAO);
-        glBindBuffer(GL_ARRAY_BUFFER, particleVBO);
-        glBufferData(GL_ARRAY_BUFFER, particleVertices.size() * sizeof(float), particleVertices.data(), GL_STATIC_DRAW);
-
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-
-        glPointSize(3.0f);
-        glDrawArrays(GL_POINTS, 0, ship.getParticles().size());
-
-        glDisableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(0);
-        glDeleteBuffers(1, &particleVBO);
-        glDeleteVertexArrays(1, &particleVAO);
-    }
-
-    drawSphere(ship.getWrappedDebugPos(), 0.15f, view, projection);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }

@@ -19,7 +19,7 @@ class Renderer {
     static void drawGrid(float worldSizeX, float worldSizeZ, int divisions);
     static void drawSphere(const glm::vec3& position, float radius, const glm::mat4& view, const glm::mat4& projection);
     static void drawAsteroids(const ToroidalWorld& world, const std::vector<Asteroid>& asteroids);
-    static void draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection,const glm::vec3& cameraPos);
+    static void draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection,const glm::vec3& cameraPos,const glm::vec3& cameraTarget,const glm::vec3& cameraForward, const glm::vec3& cameraUp);
 
 private:
     static GLuint shaderProgram;

@@ -27,7 +27,8 @@ public:
     void applyCameraDirection(const glm::vec3& front, const glm::vec3& right);
     void updateBullets(float deltaTime, const ToroidalWorld& world);
     glm::vec3 getOriginalPosition() const { return originalPosition; }
-    void shoot(const glm::vec3& cameraPos, const glm::vec3& cameraFront, float distanceFromCamera);
+    void shoot();
+    glm::vec3 getGunPosition() const;
     void renderBullets(GLuint modelLoc, const glm::vec3& cameraPos) const;
     const glm::vec3& getPosition() const;
     const glm::vec3& getForward() const;

@@ -37,8 +37,12 @@ void Spaceship::processInput(GLFWwindow* window, float deltaTime) {
     }
     
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-        shoot(position + forward * 0.5f, forward, 0.1f); // Dispara um pouco à frente da nave
+        shoot(); // Dispara um pouco à frente da nave
     }
+}
+
+glm::vec3 Spaceship::getGunPosition() const {
+    return position + forward * 1.2f + up * 0.2f; // Exemplo: ligeiramente acima
 }
 
 // Corrigindo update_position para manter a spaceship sempre na frente da câmera (sem usar velocity)
@@ -63,15 +67,18 @@ void Spaceship::update(const ToroidalWorld& world, float deltaTime) {
 
 // Ajustando os tiros (bullets) para seguir sempre a direção da câmera (forward atualizado)
 
-void Spaceship::shoot(const glm::vec3& cameraPos, const glm::vec3& cameraFront, float distanceFromCamera) {
+void Spaceship::shoot() {
     Bullet b;
-    b.position = cameraPos + cameraFront * distanceFromCamera;
-    b.velocity = cameraFront * 20.0f;
-    b.lifetime = 5.0f;
+    // Posição: ponta da nave (considerando que a nave tem ~1 unidade de comprimento)
+    b.position = getGunPosition(); // 1.2 unidades à frente do centro
+    
+    // Velocidade: mesma direção que a nave está apontando
+    b.velocity = forward * 30.0f; // Aumente a velocidade se necessário
+    
+    b.lifetime = 3.0f;
     b.active = true;
     bullets.push_back(b);
 }
-
 
 
 
