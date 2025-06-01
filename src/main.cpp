@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtc/random.hpp>
 #include <cstdlib>
 #include <ctime>
@@ -33,9 +34,11 @@ float yaw = -90.0f;    // Inicie olhando para o eixo Z-
 float pitch = 0.0f;    // Sem inclinação
 float lastX;
 float lastY;
+Spaceship ship;
 glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f, 0.0f); // posição inicial da câmera
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f); // para onde olha (atualizado pelo mouse-look)
 glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
+glm::vec3 cameraTarget = ship.getPosition() + ship.getForward() * 2.0f;
 float cameraSpeed     = 3.0f;
 bool firstMouse = true;
 
@@ -45,8 +48,6 @@ float radius = 5.0f;
 ToroidalWorld world;
 std::vector<Asteroid> asteroids;
 float asteroidSpawnTimer = 0.0f;
-Spaceship ship;
-glm::vec3 cameraTarget = ship.getPosition() + ship.getForward() * 2.0f;
 HUD hud;
 
 
@@ -305,15 +306,28 @@ int main() {
             world.getSizeX(), world.getSizeY()
         );
 
-        // No loop principal, antes de Renderer::draw()
-        std::cout << "Ship position: " << ship.getPosition().x << ", " 
-                << ship.getPosition().y << ", " << ship.getPosition().z << std::endl;
-        std::cout << "Ship forward: " << ship.getForward().x << ", "
-                << ship.getForward().y << ", " << ship.getForward().z << std::endl;
-        glm::vec3 cameraForward = glm::normalize(cameraTarget - cameraPos);
-        glm::vec3 cameraUp = glm::vec3(0, 1, 0); // Y para cima (padrão)
+        // Parâmetros
+        float cameraDist = 5.0f;
+        float cameraAlt = 3.0f;
+        float cameraPitch = glm::radians(90.0f); // Inclinação no eixo X
 
-        Renderer::draw(world, ship, view, projection, cameraPos,cameraTarget, cameraForward, cameraUp);
+        glm::vec3 shipPos = ship.getPosition();
+        glm::vec3 shipForward = ship.getForward();
+
+        // Rotacione o forward da nave no eixo X
+        glm::vec3 rotatedForward = glm::rotate(shipForward, cameraPitch, glm::vec3(1, 0, 0));
+
+        // Posição da câmera (atrás e acima da nave)
+        glm::vec3 cameraPos = shipPos - rotatedForward * cameraDist + glm::vec3(0, cameraAlt, 0);
+        glm::vec3 cameraTarget = shipPos + rotatedForward * 10.0f;
+        glm::vec3 cameraForward = glm::normalize(cameraTarget - cameraPos);
+        // Up padrão
+        glm::vec3 cameraUp = glm::vec3(0, 1, 0);
+
+        glm::mat4 view = glm::lookAt(cameraPos, cameraTarget, cameraUp);
+
+        Renderer::draw(world, ship, view, projection, cameraPos, cameraTarget, cameraForward, cameraUp);
+
         for (auto& asteroid : asteroids) {
             asteroid.render(view, projection);
         }

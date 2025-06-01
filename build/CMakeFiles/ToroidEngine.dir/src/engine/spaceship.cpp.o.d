@@ -244,9 +244,9 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: \
  /usr/include/glm/ext/vector_uint1.hpp \
  /usr/include/glm/ext/vector_uint1_sized.hpp /usr/include/c++/11/cstring \
  /usr/include/string.h /usr/include/strings.h \
- /usr/include/glm/gtc/type_ptr.inl \
- /home/sapo/code/games/Spacetime/src/engine/spaceship.hpp \
- /usr/include/glm/glm.hpp /usr/include/c++/11/climits \
+ /usr/include/glm/gtc/type_ptr.inl /usr/include/glm/gtx/rotate_vector.hpp \
+ /usr/include/glm/gtx/transform.hpp /usr/include/glm/glm.hpp \
+ /usr/include/c++/11/climits \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -261,8 +261,12 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: \
  /usr/include/glm/detail/func_packing.inl \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
- /usr/include/glm/detail/func_integer.inl /usr/include/GLFW/glfw3.h \
- /usr/include/c++/11/vector /usr/include/c++/11/bits/allocator.h \
+ /usr/include/glm/detail/func_integer.inl \
+ /usr/include/glm/gtx/transform.inl \
+ /usr/include/glm/gtx/rotate_vector.inl \
+ /home/sapo/code/games/Spacetime/src/engine/spaceship.hpp \
+ /usr/include/GLFW/glfw3.h /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/allocator.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
  /usr/include/c++/11/ext/new_allocator.h /usr/include/c++/11/new \
  /usr/include/c++/11/bits/exception.h \

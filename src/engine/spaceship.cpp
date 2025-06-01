@@ -2,6 +2,7 @@
 #include <GL/glew.h> // Necessário para glUniformMatrix4fv
 #include <glm/gtc/type_ptr.hpp> // Necessário para glm::value_ptr
 #include <glm/gtc/constants.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 #include "spaceship.hpp"
 #include <algorithm>
 #include <cmath>  // necessário para std::isfinite
@@ -13,20 +14,23 @@ Spaceship::Spaceship()
       forward(0.0f, 0.0f, -1.0f), up(0.0f, 1.0f, 0.0f), yaw(-90.0f), pitch(0.0f),
       modelMatrix(1.0f), thrust(0.0f) {}  // Note thrust iniciando em 0
 
-void Spaceship::applyRotationFromMouse(float xoffset, float yoffset) {
-    float sensitivity = 0.1f;
+void Spaceship::applyRotationFromMouse(float xoffset, float /*yoffset*/) {
+    const float sensitivity = 0.1f;
     yaw += xoffset * sensitivity;
-    pitch += yoffset * sensitivity;
+    // pitch IGNORADO, fixo!
 
-    if (pitch > 89.0f) pitch = 89.0f;
-    if (pitch < -89.0f) pitch = -89.0f;
+    float fixedPitch = glm::radians(80.0f); // Inclinação fixa
+    float yawRad   = glm::radians(yaw);
 
-    glm::vec3 dir;
-    dir.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    dir.y = sin(glm::radians(pitch));
-    dir.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    forward = glm::normalize(dir);
+    glm::vec3 direction;
+    direction.x = cos(fixedPitch) * cos(yawRad);
+    direction.y = sin(fixedPitch);
+    direction.z = cos(fixedPitch) * sin(yawRad);
+
+    forward = glm::normalize(direction);
 }
+
+
 void Spaceship::processInput(GLFWwindow* window, float deltaTime) {
     thrust = 0.0f; // Reset a cada frame
 

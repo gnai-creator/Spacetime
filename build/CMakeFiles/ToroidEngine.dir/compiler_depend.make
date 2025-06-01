@@ -2637,7 +2637,8 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: ../src/engine/spaceship.
   /usr/include/string.h \
   /usr/include/strings.h \
   /usr/include/glm/gtc/type_ptr.inl \
-  ../src/engine/spaceship.hpp \
+  /usr/include/glm/gtx/rotate_vector.hpp \
+  /usr/include/glm/gtx/transform.hpp \
   /usr/include/glm/glm.hpp \
   /usr/include/c++/11/climits \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
@@ -2659,6 +2660,9 @@ CMakeFiles/ToroidEngine.dir/src/engine/spaceship.cpp.o: ../src/engine/spaceship.
   /usr/include/glm/detail/type_half.inl \
   /usr/include/glm/integer.hpp \
   /usr/include/glm/detail/func_integer.inl \
+  /usr/include/glm/gtx/transform.inl \
+  /usr/include/glm/gtx/rotate_vector.inl \
+  ../src/engine/spaceship.hpp \
   /usr/include/GLFW/glfw3.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/allocator.h \
@@ -3455,6 +3459,16 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/glm/ext/matrix_transform.hpp \
   /usr/include/glm/ext/matrix_transform.inl \
   /usr/include/glm/gtc/matrix_transform.inl \
+  /usr/include/glm/gtx/rotate_vector.hpp \
+  /usr/include/glm/gtx/transform.hpp \
+  /usr/include/glm/gtx/transform.inl \
+  /usr/include/glm/gtc/epsilon.hpp \
+  /usr/include/glm/detail/setup.hpp \
+  /usr/include/glm/gtc/epsilon.inl \
+  /usr/include/glm/ext/vector_relational.hpp \
+  /usr/include/glm/ext/vector_relational.inl \
+  /usr/include/glm/detail/type_float.hpp \
+  /usr/include/glm/gtx/rotate_vector.inl \
   /usr/include/glm/gtc/random.hpp \
   /usr/include/glm/gtc/random.inl \
   /usr/include/c++/11/cstdlib \
@@ -3537,9 +3551,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/basic_string.tcc \
   ../src/engine/spaceship.hpp \
   /usr/include/glm/gtc/quaternion.hpp \
-  /usr/include/glm/ext/vector_relational.hpp \
-  /usr/include/glm/ext/vector_relational.inl \
-  /usr/include/glm/detail/type_float.hpp \
   /usr/include/glm/ext/quaternion_common.hpp \
   /usr/include/glm/ext/quaternion_geometric.hpp \
   /usr/include/glm/ext/quaternion_geometric.inl \
@@ -3557,9 +3568,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/glm/ext/quaternion_transform.hpp \
   /usr/include/glm/ext/quaternion_transform.inl \
   /usr/include/glm/gtc/quaternion.inl \
-  /usr/include/glm/gtc/epsilon.hpp \
-  /usr/include/glm/detail/setup.hpp \
-  /usr/include/glm/gtc/epsilon.inl \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_vector.h \

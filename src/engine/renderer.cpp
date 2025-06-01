@@ -268,7 +268,9 @@ void Renderer::drawAsteroids(const ToroidalWorld& world, const std::vector<Aster
     }
 }
 
-void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, const glm::vec3& cameraTarget, const glm::vec3& cameraForward,const glm::vec3& cameraUp) {
+void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm::mat4& view,
+                    const glm::mat4& projection, const glm::vec3& cameraPos, const glm::vec3& aimTarget,
+                    const glm::vec3& cameraForward, const glm::vec3& cameraUp) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(shaderProgram);
 
@@ -282,22 +284,18 @@ void Renderer::draw(const ToroidalWorld& world, const Spaceship& ship, const glm
     // Desenha a nave (triângulo) - usando coordenadas relativas à nave
     glBindVertexArray(shipVAO);
 
-    // Posição fixa na origem do espaço da câmera (não no mundo!)
-    // Posição da nave no mundo
-    glm::mat4 shipModel = glm::translate(glm::mat4(1.0f), ship.getPosition());
+    // 1. Após desenhar o mundo normalmente...
 
-    // Deite a nave se precisar, só para fins visuais
-    shipModel = glm::rotate(shipModel, glm::radians(80.0f), glm::vec3(1, 0, 0));
-
-    // Escale a nave
+    // 2. Desenhe a nave SEM view!
+    glm::mat4 shipModel = glm::mat4(1.0f);
+    shipModel = glm::rotate(shipModel, glm::radians(80.0f), glm::vec3(1, 0, 0)); // ou outro ângulo que quiser
     shipModel = glm::scale(shipModel, glm::vec3(0.5f));
 
-    // NÃO multiplique por nenhuma rotação da câmera!
-    // NÃO use glm::quatLookAt
-    // NÃO use glm::inverse(glm::mat4(glm::mat3(view)))
-
-    // Envie para o shader
+    // Use um shader especial SEM view, ou no shader desconsidere o uniform view
+    // Por exemplo:
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(shipModel));
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f))); // view = identidade!
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
 

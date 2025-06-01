@@ -226,9 +226,17 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/glm/ext/matrix_transform.hpp \
  /usr/include/glm/ext/matrix_transform.inl \
  /usr/include/glm/gtc/matrix_transform.inl \
- /usr/include/glm/gtc/random.hpp /usr/include/glm/gtc/random.inl \
- /usr/include/c++/11/cstdlib /usr/include/c++/11/ctime \
- /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/glm/gtx/rotate_vector.hpp \
+ /usr/include/glm/gtx/transform.hpp /usr/include/glm/gtx/transform.inl \
+ /usr/include/glm/gtc/epsilon.hpp /usr/include/glm/detail/setup.hpp \
+ /usr/include/glm/gtc/epsilon.inl \
+ /usr/include/glm/ext/vector_relational.hpp \
+ /usr/include/glm/ext/vector_relational.inl \
+ /usr/include/glm/detail/type_float.hpp \
+ /usr/include/glm/gtx/rotate_vector.inl /usr/include/glm/gtc/random.hpp \
+ /usr/include/glm/gtc/random.inl /usr/include/c++/11/cstdlib \
+ /usr/include/c++/11/ctime /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/timex.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
@@ -291,9 +299,6 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/basic_string.tcc \
  /home/sapo/code/games/Spacetime/src/engine/spaceship.hpp \
  /usr/include/glm/gtc/quaternion.hpp \
- /usr/include/glm/ext/vector_relational.hpp \
- /usr/include/glm/ext/vector_relational.inl \
- /usr/include/glm/detail/type_float.hpp \
  /usr/include/glm/ext/quaternion_common.hpp \
  /usr/include/glm/ext/quaternion_geometric.hpp \
  /usr/include/glm/ext/quaternion_geometric.inl \
@@ -310,9 +315,8 @@ CMakeFiles/ToroidEngine.dir/src/main.cpp.o: \
  /usr/include/glm/ext/quaternion_trigonometric.inl \
  /usr/include/glm/ext/quaternion_transform.hpp \
  /usr/include/glm/ext/quaternion_transform.inl \
- /usr/include/glm/gtc/quaternion.inl /usr/include/glm/gtc/epsilon.hpp \
- /usr/include/glm/detail/setup.hpp /usr/include/glm/gtc/epsilon.inl \
- /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/glm/gtc/quaternion.inl /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
